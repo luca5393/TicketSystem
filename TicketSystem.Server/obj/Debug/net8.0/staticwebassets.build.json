@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "4KebidIvVKYymjaZAvU7E15EK6B5LUTXypQ946BC838=",
+  "Source": "TicketSystem.Server",
+  "BasePath": "_content/TicketSystem.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\ticketsystem.client.esproj",
+      "Version": 2,
+      "Source": "ticketsystem.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;Configuration;Platform;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;Configuration;Platform;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

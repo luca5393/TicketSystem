@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ticketsystem.client"
   ],
+  "SelectedNode": "\\TicketSystem.sln",
   "PreviewInSolutionExplorer": false
 }
