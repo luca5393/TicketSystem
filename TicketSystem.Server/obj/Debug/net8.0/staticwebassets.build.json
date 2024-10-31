@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "Hash": "4KebidIvVKYymjaZAvU7E15EK6B5LUTXypQ946BC838=",
+  "Hash": "H48vDb5X80/Kl6tk/oGVH5/B3HXl0QPWyS1YKvm6j58=",
   "Source": "TicketSystem.Server",
   "BasePath": "_content/TicketSystem.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\ticketsystem.client.esproj",
+      "Identity": "C:\\Users\\HFGF\\source\\repos\\TicketSystem\\ticketsystem.client\\ticketsystem.client.esproj",
       "Version": 2,
       "Source": "ticketsystem.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;Configuration;Platform;TargetFramework;RuntimeIdentifier;SelfContained",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;Configuration;Platform;TargetFramework;RuntimeIdentifier;SelfContained"
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     }
   ],
   "DiscoveryPatterns": [],
