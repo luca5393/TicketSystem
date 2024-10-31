@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
+              "RelativeDocumentMoniker": "TicketSystem.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
+              "RelativeToolTip": "TicketSystem.Server\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T12:19:46.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "vite.config.js",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
+              "RelativeDocumentMoniker": "ticketsystem.client\\vite.config.js",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
+              "RelativeToolTip": "ticketsystem.client\\vite.config.js",
+              "ViewState": "AgIAABAAAAAAAAAAAAAwwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-10-31T12:19:01.284Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

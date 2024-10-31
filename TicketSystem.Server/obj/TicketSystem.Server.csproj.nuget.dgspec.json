@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HFGF\\source\\repos\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj": {}
+    "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HFGF\\source\\repos\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj": {
+    "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HFGF\\source\\repos\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
+        "projectUniqueName": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
         "projectName": "TicketSystem.Server",
-        "projectPath": "C:\\Users\\HFGF\\source\\repos\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
+        "projectPath": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
         "packagesPath": "C:\\Users\\HFGF\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HFGF\\source\\repos\\TicketSystem\\TicketSystem.Server\\obj\\",
+        "outputPath": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HFGF\\AppData\\Roaming\\NuGet\\NuGet.Config",
