@@ -30,6 +30,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 form {
     display: flex;
     flex-direction: column;
@@ -38,16 +40,18 @@ form {
     width: 20%;
     top: 40%;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(8px);
+    border: 2px solid var(--color-border);
+    backdrop-filter: blur(8px);;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    color: black;
+    color: var(--color-text);
     border-radius: 10px;
     padding: 30px 40px;
+
 
     h1 {
         font-size: 36px;
         text-align: center;
     }
+
 }
 </style>
