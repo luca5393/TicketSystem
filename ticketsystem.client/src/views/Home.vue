@@ -1,4 +1,5 @@
 <template>
+    <AppHeader />
     <h1>HOMESCREEN</h1>
 </template>
 
