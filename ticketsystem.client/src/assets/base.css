@@ -7,6 +7,7 @@
   --vt-c-black: #181818;
   --vt-c-black-soft: #222222;
   --vt-c-black-mute: #282828;
+  --vt-c-pink: #FFC0CB;
 
   --vt-c-indigo: #2c3e50;
 
@@ -44,6 +45,7 @@
 
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);
+    --color-border-costume: var(--vt-c-pink);
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);

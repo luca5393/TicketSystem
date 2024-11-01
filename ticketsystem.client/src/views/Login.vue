@@ -40,7 +40,7 @@ form {
     width: 20%;
     top: 40%;
     background: transparent;
-    border: 2px solid var(--color-border);
+    border: 2px solid var(--color-border-costume);
     backdrop-filter: blur(8px);;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     color: var(--color-text);
