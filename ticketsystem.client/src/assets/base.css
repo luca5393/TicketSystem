@@ -50,7 +50,7 @@
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
     --color-link: var(--vt-c-green);
-    --color-placeholder: var(--vt-c-gray);
+    --color-placeholder: var(--vt-c-white);
     --color-button: var(--vt-c-white);
     --color-button-text: var(--vt-c-black);
     --color-border-input: var(--vt-c-gray);
