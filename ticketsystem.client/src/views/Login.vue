@@ -1,21 +1,28 @@
 <template>
-    <form method="post">
-        <h1>Login</h1>
-        <div class="input-box">
-            <input type="text" name="username" placeholder="Username" required>
-        </div>
-        <div class="input-box">
-            <input type="password" name="password" placeholder="Password" required>
-        </div>
-        <div class="remember-forgot">
-            <label><input type="checkbox"> Remember me</label>
-            <a href="#">Forgot password?</a>
-        </div>
-        <button type="submit" class="btn">Login</button>
-        <div class="register-link">
-            <p>Don't have an account? <a href="Signup">Register</a></p>
-        </div>
-    </form>
+  <form method="post">
+    <div class="wrapper">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input type="text" name="username" placeholder="Username" required />
+      </div>
+      <div class="input-box">
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <div class="remember-forgot">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="register-link">
+        <p>Don't have an account? <a href="Signup">Register</a></p>
+      </div>
+    </div>
+  </form>
 </template>
 
 <script lang="js">
@@ -30,28 +37,142 @@ export default {
 </script>
 
 <style scoped>
+/* form {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 40%;
+  width: 20%;
+  top: 30%;
+  background: transparent;
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--color-border);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: var(--color-text);
+  border-radius: 10px;
+  padding: 30px 40px;
 
+  h1 {
+    font-size: 36px;
+    text-align: center;
+  }
 
-form {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 40%;
-    width: 20%;
-    top: 40%;
-    background: transparent;
-    border: 2px solid var(--color-border-costume);
-    backdrop-filter: blur(8px);;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    color: var(--color-text);
-    border-radius: 10px;
-    padding: 30px 40px;
+  .input-box {
+    width: 70%;
+  }
+}*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-    h1 {
-        font-size: 36px;
-        text-align: center;
-    }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("yes.webp") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
+.wrapper {
+  width: 100%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.wrapper .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgb(255, 255, 255, 0.2);
+  border-radius: 40px;
+  font-size: 16px;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: var(--color-placeholder);
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.wrapper .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14.5px;
+  margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+  margin-right: 3px;
+}
+
+.remember-forgot a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.wrapper .btn {
+  width: 100%;
+  height: 45px;
+  background: var(--color-placeholder);
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--color-button-text);
+  font-weight: 600;
+}
+
+.wrapper .register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+
+.register-link p a {
+  color: var(--color-link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
 }
 </style>
