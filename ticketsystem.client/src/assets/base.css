@@ -36,6 +36,7 @@
   --color-button: var(--vt-c-black);
   --color-placeholder: var(--vt-c-black);
   --color-button-text: var(--vt-c-white);
+  --input-color-text: var(--vt-c-black);
 
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
@@ -57,6 +58,7 @@
     --color-button-text: var(--vt-c-black);
     --color-border-input: var(--vt-c-gray);
     --color-wrapper-border: var(--vt-c-gray);
+    --input-color-text: var(--vt-c-white);
 
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);

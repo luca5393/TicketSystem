@@ -97,6 +97,7 @@ export default {
   border-radius: 40px;
   font-size: 16px;
   padding: 20px 45px 20px 20px;
+  color: var(--input-color-text);
 }
 
 .input-box input::placeholder {
