@@ -31,9 +31,9 @@
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
   --color-link: var(--vt-c-green);
+  --color-button: var(--vt-c-black);
   --color-placeholder: var(--vt-c-black);
   --color-button-text: var(--vt-c-white);
-  --color-border-input: var(--vt-c-gray);
 
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
