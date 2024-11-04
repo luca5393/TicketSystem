@@ -32,6 +32,7 @@
   --color-background-mute: var(--vt-c-white-mute);
   --color-link: var(--vt-c-green);
   --color-border-input: var(--vt-c-gray);
+  --color-wrapper-border: var(--vt-c-white-soft);
   --color-button: var(--vt-c-black);
   --color-placeholder: var(--vt-c-black);
   --color-button-text: var(--vt-c-white);
@@ -55,6 +56,7 @@
     --color-button: var(--vt-c-white);
     --color-button-text: var(--vt-c-black);
     --color-border-input: var(--vt-c-gray);
+    --color-wrapper-border: var(--vt-c-gray);
 
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);

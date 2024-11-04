@@ -68,7 +68,7 @@ export default {
 .wrapper {
   width: 100%;
   background: transparent;
-  border: 2px solid var(--color-border-input);
+  border: 2px solid var(--color-wrapper-border);
   backdrop-filter: blur(8px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
