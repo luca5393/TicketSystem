@@ -9,6 +9,7 @@
   --vt-c-black-mute: #282828;
   --vt-c-pink: #FFC0CB;
   --vt-c-green: #32CD32;
+  --vt-c-gray: #666666;
   
 
   --vt-c-indigo: #2c3e50;
@@ -32,6 +33,7 @@
   --color-link: var(--vt-c-green);
   --color-placeholder: var(--vt-c-black);
   --color-button-text: var(--vt-c-white);
+  --color-border-input: var(--vt-c-gray);
 
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
@@ -48,8 +50,10 @@
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
     --color-link: var(--vt-c-green);
-    --color-placeholder: var(--vt-c-white);
+    --color-placeholder: var(--vt-c-gray);
+    --color-button: var(--vt-c-white);
     --color-button-text: var(--vt-c-black);
+    --color-border-input: var(--vt-c-gray);
 
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);

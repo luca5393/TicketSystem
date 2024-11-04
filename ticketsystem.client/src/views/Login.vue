@@ -3,15 +3,10 @@
     <div class="wrapper">
       <h1>Login</h1>
       <div class="input-box">
-        <input type="text" name="username" placeholder="Username" required />
+        <input type="text" id="username" name="username" placeholder="Username" required />
       </div>
       <div class="input-box">
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
+        <input type="password" id="password" name="password" placeholder="Password" required />
       </div>
       <div class="remember-forgot">
         <label><input type="checkbox" /> Remember me</label>
@@ -70,20 +65,10 @@ export default {
   font-family: "Poppins", sans-serif;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: url("yes.webp") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
 .wrapper {
   width: 100%;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid var(--color-border-input);
   backdrop-filter: blur(8px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -108,7 +93,7 @@ body {
   background: transparent;
   border: none;
   outline: none;
-  border: 2px solid rgb(255, 255, 255, 0.2);
+  border: 2px solid var(--color-border-input);
   border-radius: 40px;
   font-size: 16px;
   padding: 20px 45px 20px 20px;
@@ -149,7 +134,7 @@ body {
 .wrapper .btn {
   width: 100%;
   height: 45px;
-  background: var(--color-placeholder);
+  background: var(--color-button);
   border: none;
   outline: none;
   border-radius: 40px;
