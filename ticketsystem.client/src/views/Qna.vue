@@ -1,11 +1,11 @@
 <template>
     <AppHeader />
-    <h1>Ticket</h1>
+    <h1>QNA</h1>
 </template>
 
 <script lang="js">
 export default {
-  name: 'Ticket',
+  name: 'Qna',
 };
 </script>
 
