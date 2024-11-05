@@ -32,32 +32,6 @@ export default {
 </script>
 
 <style scoped>
-/* form {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  left: 40%;
-  width: 20%;
-  top: 30%;
-  background: transparent;
-  backdrop-filter: blur(8px);
-  border: 2px solid var(--color-border);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: var(--color-text);
-  border-radius: 10px;
-  padding: 30px 40px;
-
-  h1 {
-    font-size: 36px;
-    text-align: center;
-  }
-
-  .input-box {
-    width: 70%;
-  }
-}*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -72,7 +46,7 @@ export default {
   backdrop-filter: blur(8px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 30px 40px;
+  padding: 30px 80px;
 }
 
 .wrapper h1 {
@@ -85,6 +59,7 @@ export default {
   width: 100%;
   height: 50px;
   margin: 30px 0;
+
 }
 
 .input-box input {
