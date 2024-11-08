@@ -1,10 +1,9 @@
 <template>
     <header class="app-header">
-        <h1>Ticket System</h1>
+        <h1><router-link to="/">Ticket System</router-link></h1>
         <nav>
             <ul v-if="LoggedIn">
                 <li><router-link to="/">Home</router-link></li>
-                <li><router-link to="/qna">QNA</router-link></li>
             </ul>
         </nav>
         <nav class="right">
@@ -71,6 +70,7 @@ nav a.router-link-exact-active {
 body {
     padding-top: 4rem;
 }
+
 </style>
 
 
