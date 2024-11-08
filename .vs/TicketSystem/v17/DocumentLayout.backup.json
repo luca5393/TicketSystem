@@ -1,25 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\",
+  "WorkspaceRootPath": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\router\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\router\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.client\\jsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\jsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
@@ -30,75 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "index.js",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\router\\index.js",
-              "RelativeDocumentMoniker": "ticketsystem.client\\src\\router\\index.js",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\router\\index.js",
-              "RelativeToolTip": "ticketsystem.client\\src\\router\\index.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-11-07T08:20:57.465Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "vite.config.js",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
-              "RelativeDocumentMoniker": "ticketsystem.client\\vite.config.js",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
-              "RelativeToolTip": "ticketsystem.client\\vite.config.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-11-07T08:00:27.008Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "jsconfig.json",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\jsconfig.json",
-              "RelativeDocumentMoniker": "ticketsystem.client\\jsconfig.json",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\jsconfig.json",
-              "RelativeToolTip": "ticketsystem.client\\jsconfig.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-07T08:00:21.134Z",
+              "DocumentIndex": 1,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-08T07:44:51.168Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "LoginController.cs",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\LoginController.cs",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAwwAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T08:25:24.375Z",
+              "WhenOpened": "2024-11-08T07:39:57.355Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
               "RelativeDocumentMoniker": "TicketSystem.Server\\Program.cs",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
               "RelativeToolTip": "TicketSystem.Server\\Program.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAuwBwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-31T12:19:46.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "vite.config.js",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
+              "RelativeDocumentMoniker": "ticketsystem.client\\vite.config.js",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
+              "RelativeToolTip": "ticketsystem.client\\vite.config.js",
+              "ViewState": "AgIAABgAAAAAAAAAAAAUwBYAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-10-31T12:19:01.284Z",
               "EditorCaption": ""
             }
           ]

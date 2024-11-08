@@ -7,11 +7,11 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YourProject.Controllers
+namespace TicketSystem.Server.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowAll")]  // This enables CORS for only this controller
+    [Route("[controller]")]
+    [EnableCors("AllowAll")]
     public class ApiController : ControllerBase
     {
         private readonly string _supabaseUrl = "https://udrzymhgvoinbnrombuj.supabase.co"; // Replace with your Supabase URL
