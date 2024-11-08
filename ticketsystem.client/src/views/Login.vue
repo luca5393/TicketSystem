@@ -1,34 +1,39 @@
 <template>
-  <form method="post">
     <div class="wrapper">
       <h1>Login</h1>
       <div class="input-box">
-        <input type="text" id="username" name="username" placeholder="Username" required />
+        <input v-model="email" type="email" id="username" name="email" placeholder="Username" required />
       </div>
       <div class="input-box">
-        <input type="password" id="password" name="password" placeholder="Password" required />
+        <input v-model="password" type="password" id="password" name="password" placeholder="Password" required />
       </div>
       <div class="remember-forgot">
         <label><input type="checkbox" /> Remember me</label>
         <a href="#">Forgot password?</a>
       </div>
-      <button type="submit" class="btn">Login</button>
+      <button @click="submitForm" class="btn">Login</button>
       <div class="register-link">
         <p>Don't have an account? <a href="Signup">Register</a></p>
       </div>
+      <!-- Error message for failed login -->
     </div>
-  </form>
 </template>
 
-<script lang="js">
-export default {
-  name: 'LogIn',
-  methods: {
-    formSubmit() {
-      this.$router.push("home");
+<script setup>
+    import { ref } from 'vue';
+    import axios from 'axios';
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter
+
+    const email = ref('')
+    const password = ref('')
+
+    const submitForm = async () => {
+        const response = await axios.post('http://localhost:7253/api/Api/login', { email: email.value, password: password.value})
+        console.log(response)
+        router.push('Home')
     }
-  }
-};
 </script>
 
 <style scoped>
