@@ -17,26 +17,36 @@
       </div>
       <!-- Error message for failed login -->
     </div>
-</template>
-
-<script setup>
-    import { ref } from 'vue';
-    import axios from 'axios';
-    import { useRouter } from 'vue-router';
-
-    const router = useRouter
-
-    const email = ref('')
-    const password = ref('')
-
-    const submitForm = async () => {
-        const response = await axios.post('https://localhost:7253/Api/login', { email: email.value, password: password.value})
-        console.log(response)
-        router.push('Home')
+  </template>
+  
+  <script setup>
+  import { ref, inject } from 'vue';
+  
+  const router = inject('router');
+  const axios = inject('axios');
+  
+  const email = ref('');
+  const password = ref('');
+  
+  const submitForm = async () => {
+    try {
+      const response = await axios.post('https://localhost:7253/Api/login', {
+        email: email.value,
+        password: password.value
+      });
+  
+      if (response.status === 200) {
+        router.push({ name: 'Home' });
+      } else {
+        console.error('Login failed');
+      }
+    } catch (error) {
+      console.error('An error occurred during login:', error);
     }
-</script>
-
-<style scoped>
+  };
+  </script>
+  
+  <style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -141,4 +151,5 @@
 .register-link p a:hover {
   text-decoration: underline;
 }
-</style>
+  </style>
+  

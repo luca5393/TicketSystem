@@ -38,8 +38,7 @@
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T07:44:51.168Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-08T07:44:51.168Z"
             },
             {
               "$type": "Document",
@@ -49,7 +48,7 @@
               "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\LoginController.cs",
               "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-08T07:39:57.355Z",
               "EditorCaption": ""
@@ -64,8 +63,7 @@
               "RelativeToolTip": "TicketSystem.Server\\Program.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAADwvxAAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-31T12:19:46.498Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-31T12:19:46.498Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "ticketsystem.client\\vite.config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-10-31T12:19:01.284Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-31T12:19:01.284Z"
             }
           ]
         }
