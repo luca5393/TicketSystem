@@ -32,7 +32,6 @@
     const submitForm = async () => {
         const response = await axios.post('https://localhost:7253/Api/login', { email: email.value, password: password.value})
         console.log(response)
-        router.push('Home')
     }
 </script>
 

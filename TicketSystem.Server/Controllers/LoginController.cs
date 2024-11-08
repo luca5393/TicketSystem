@@ -9,22 +9,15 @@ using System.Threading.Tasks;
 
 namespace TicketSystem.Server.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     [EnableCors("AllowVueApp")]
     public class ApiController : ControllerBase
     {
-        private readonly string _supabaseUrl = "https://udrzymhgvoinbnrombuj.supabase.co"; // Replace with your Supabase URL
-        private readonly string _supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkcnp5bWhndm9pbmJucm9tYnVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0NDU4MTAsImV4cCI6MjA0NjAyMTgxMH0.8e3KcbTlAyrfFMZmdvSYqV_AvcGVCXp2CCllPdWfYWk"; // Replace with your Supabase API Key
-        private readonly string _supabaseJwtSecret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkcnp5bWhndm9pbmJucm9tYnVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczMDQ0NTgxMCwiZXhwIjoyMDQ2MDIxODEwfQ.X0xb6y_oVhXoHQmDHBbQfOnJVFSGt2m3sNmFzrwr0F8"; // Your Supabase JWT secret
-        
-        private Supabase.Client _supabaseClient;
-         
-        public ApiController()
-        {
-            // Initialize Supabase client 
-            _supabaseClient = new Supabase.Client(_supabaseUrl, _supabaseKey);
-        }
+        private readonly string _supabaseJwtSecret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkcnp5bWhndm9pbmJucm9tYnVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczMDQ0NTgxMCwiZXhwIjoyMDQ2MDIxODEwfQ.X0xb6y_oVhXoHQmDHBbQfOnJVFSGt2m3sNmFzrwr0F8";
+
+        private Supabase.Client _supabaseClient = new SupabaseConnector().GetSupabaseClient();
 
         // POST api/login
         [HttpPost("login")]

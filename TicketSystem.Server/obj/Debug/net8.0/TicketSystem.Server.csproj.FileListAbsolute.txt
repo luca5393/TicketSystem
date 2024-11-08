@@ -140,3 +140,4 @@ C:\Users\HFGF\Documents\GitHub\TicketSystem\TicketSystem.Server\bin\Debug\net8.0
 C:\Users\HFGF\Documents\GitHub\TicketSystem\TicketSystem.Server\bin\Debug\net8.0\System.Reactive.dll
 C:\Users\HFGF\Documents\GitHub\TicketSystem\TicketSystem.Server\bin\Debug\net8.0\Websocket.Client.dll
 C:\Users\HFGF\Documents\GitHub\TicketSystem\TicketSystem.Server\bin\Debug\net8.0\System.Web.Cors.dll
+C:\Users\marcu\Documents\GitHub\TicketSystem\TicketSystem.Server\bin\Debug\net8.0\System.Web.Cors.dll
