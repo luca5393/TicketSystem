@@ -11,7 +11,7 @@ namespace TicketSystem.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [EnableCors("AllowAll")]
+    [EnableCors("AllowVueApp")]
     public class ApiController : ControllerBase
     {
         private readonly string _supabaseUrl = "https://udrzymhgvoinbnrombuj.supabase.co"; // Replace with your Supabase URL
