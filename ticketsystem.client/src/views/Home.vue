@@ -14,8 +14,8 @@ import ProductList from '@/components/ProductList.vue';
             </label>
         </div>
 
-        <ProductList class="test" v-if="!ticketListTab"/>
-        <TicketsList class="test" v-else/>
+        <ProductList v-if="!ticketListTab"/>
+        <TicketsList v-else/>
     </div>
 </template>         
 
@@ -33,8 +33,7 @@ export default {
 <style scoped>
 .main-container {
     display: flex;
-    margin-top: 7rem;
-    margin-left: 2rem;
+    margin: 7rem 2rem 2rem 2rem;
 }
 .tab-container {
   display: flex;
