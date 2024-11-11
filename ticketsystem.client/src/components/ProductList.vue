@@ -3,10 +3,11 @@
       <p class="title">Product List</p>
       <ul>
         <li v-for="item in items" :key="item.id" class="product-item">
-          <span class="product-name">{{ item.name }} - {{ item.product }}</span>
+          <span class="product-name">{{ item.product }}</span>
           <div class="buttons">
-            <button @click="handleSLA(item)" class="btn sla">SLA</button>
-            <button @click="handleQNA(item)" class="btn qna">QNA</button>
+            <router-link :to="{ name: 'ProductSla', params: { id: item.id } }" class="btn sla">SLA</router-link>
+            
+            <router-link :to="{ name: 'ProductQna', params: { id: item.id } }" class="btn qna">QNA</router-link>
           </div>
         </li>
       </ul>
@@ -18,21 +19,12 @@
     name: 'ProductList',
     data() {
       return {
-        selectedProduct: "AP",
         items: [
-          { id: 1, name: 'Item A', product: 'Product 1' },
-          { id: 2, name: 'Item B', product: 'Product 2' },
-          { id: 3, name: 'Item C', product: 'Product 1' },
+          { id: 1, product: 'Product 1' },
+          { id: 2, product: 'Product 2' },
+          { id: 3, product: 'Product 3' },
         ],
       };
-    },
-    methods: {
-      handleSLA(item) {
-        alert(`SLA for ${item.name} - ${item.product}`);
-      },
-      handleQNA(item) {
-        alert(`QNA for ${item.name} - ${item.product}`);
-      },
     },
   };
   </script>
