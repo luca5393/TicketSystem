@@ -20,7 +20,12 @@
       <!-- Ticket List -->
       <ul>
         <li v-for="item in sortedItems" :key="item.id">
-          {{ item.name }} - {{ item.product }} - Priority: {{ item.priority }} - Date: {{ new Date(item.time).toLocaleString() }}
+          <!-- Use router-link to navigate to the ticket detail view -->
+          <router-link :to="{ name: 'TicketView', params: { id: item.id } }">
+            <div class="ticket-item">
+              <span>{{ item.name }} - {{ item.product }} - Priority: {{ item.priority }} - Date: {{ new Date(item.time).toLocaleString() }}</span>
+            </div>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -75,79 +80,72 @@
   </script>
   
   <style scoped>
-/* Container styling */
-div {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  max-width: 600px;
-  margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Title Styling */
-p {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #333;
-}
-
-/* Select dropdowns */
-select {
-  padding: 8px 12px;
-  font-size: 16px;
-  margin-right: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-/* Select container for styling dropdowns */
-div > select {
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-/* Ticket List */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-/* Ticket Item */
-li {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Ticket Item Text */
-li span {
-  display: inline-block;
-  margin-right: 10px;
-  color: #555;
-}
-
-/* Priority Label */
-li span.priority {
-  font-weight: bold;
-  color: #e74c3c; /* Red color for high priority */
-}
-
-/* Date formatting */
-li span.date {
-  font-size: 0.9em;
-  color: #777;
-  font-style: italic;
-  margin-left: 10px;
-}
-</style>
-
+  /* Container styling */
+  div {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title Styling */
+  p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Select dropdowns */
+  select {
+    padding: 8px 12px;
+    font-size: 16px;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Ticket List */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Ticket Item Styling */
+  .ticket-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+  }
+  
+  /* Hover effect for ticket item */
+  .ticket-item:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Priority Label */
+  .ticket-item span.priority {
+    font-weight: bold;
+    color: #e74c3c; /* Red color for high priority */
+  }
+  
+  /* Date formatting */
+  .ticket-item span.date {
+    font-size: 0.9em;
+    color: #777;
+    font-style: italic;
+    margin-left: 10px;
+  }
+  </style>
   
