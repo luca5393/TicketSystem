@@ -13,8 +13,21 @@ const routes = [
   },
   {
     path: '/ticket',
-    name: 'Ticket',
+    name: 'TicketCreate',
     component: Ticket,
+    props: { mode: 'create' },
+  },
+  {
+    path: '/ticket/create',
+    name: 'TicketCreate',
+    component: Ticket,
+    props: { mode: 'create' },
+  },
+  {
+    path: '/ticket/:id',
+    name: 'TicketView',
+    component: Ticket,
+    props: true,
   },
   {
     path: '/login',
