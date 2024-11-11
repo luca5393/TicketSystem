@@ -3,7 +3,7 @@ import Home from '../views/Home.vue';
 import Ticket from '../views/Ticket.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
-import Qna from '../views/Qna.vue';
+import Product from '../views/Product.vue';
 
 const routes = [
   {
@@ -11,6 +11,20 @@ const routes = [
     name: 'Home',
     component: Home,
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup,
+  },
+
+
+    // Ticket routes
+    // Start
   {
     path: '/ticket',
     redirect: '/ticket/create',
@@ -27,21 +41,37 @@ const routes = [
     component: Ticket,
     props: true,
   },
+    // Ticket routes
+    // END
+  
+
+    // Product routes
+    // Start
   {
-    path: '/login',
-    name: 'Login',
-    component: Login,
+    path: '/product',
+    redirect: '/',
   },
   {
-    path: '/signup',
-    name: 'Signup',
-    component: Signup,
+    path: '/product/:id',
+    name: 'ProductDefault',
+    redirect: (to) => {
+      return { name: 'ProductQna', params: { id: to.params.id } };
+    },
   },
   {
-    path: '/qna',
-    name: 'Qna',
-    component: Qna,
+    path: '/product/:id/qna',
+    name: 'ProductQna',
+    component: Product,
+    props: { section: 'qna' },
   },
+  {
+    path: '/product/:id/sla',
+    name: 'ProductSla',
+    component: Product,
+    props: { section: 'sla' },
+  },
+    // Product routes
+    // END
 ];
 
 const router = createRouter({
