@@ -13,9 +13,7 @@ const routes = [
   },
   {
     path: '/ticket',
-    name: 'TicketCreate',
-    component: Ticket,
-    props: { mode: 'create' },
+    redirect: '/ticket/create',
   },
   {
     path: '/ticket/create',
