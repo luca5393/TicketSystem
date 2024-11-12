@@ -4,9 +4,6 @@ using Supabase;
 
 namespace TicketSystem.Server.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    [EnableCors("AllowVueApp")]
     public class SupabaseConnector
     {
         private readonly string _supabaseUrl = "https://udrzymhgvoinbnrombuj.supabase.co";
