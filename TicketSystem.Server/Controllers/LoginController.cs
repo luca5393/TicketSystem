@@ -19,6 +19,8 @@ namespace TicketSystem.Server.Controllers
 
         private Supabase.Client _supabaseClient = new SupabaseConnector().GetSupabaseClient();
 
+        private Validator _validator = new Validator();
+
         // POST api/login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
@@ -60,7 +62,7 @@ namespace TicketSystem.Server.Controllers
             var token = authHeader.Substring("Bearer ".Length).Trim();
 
             // Validate the JWT token manually
-            var validatedToken = ValidateToken(token);
+            var validatedToken = _validator.ValidateToken(token);
             if (validatedToken == null)
             {
                 return Unauthorized(new { message = "Invalid or expired token." });
@@ -88,7 +90,7 @@ namespace TicketSystem.Server.Controllers
             var token = authHeader.Substring("Bearer ".Length).Trim();
 
             // Validate the JWT token manually
-            var validatedToken = ValidateToken(token);
+            var validatedToken = _validator.ValidateToken(token);
             if (validatedToken == null)
             {
                 return Unauthorized(new { message = "Invalid or expired token." });
@@ -105,38 +107,6 @@ namespace TicketSystem.Server.Controllers
             return Ok(new { message = "Data received from authenticated user", userEmail = user.Email });
         }
 
-        private ClaimsPrincipal ValidateToken(string token)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(_supabaseJwtSecret); // Use the secret key for token validation
-
-            try
-            {
-                var validationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,  // Set to true and specify Issuer if necessary
-                    ValidateAudience = false, // Set to true and specify Audience if necessary
-                    ValidateLifetime = true,  // Ensure the token has not expired
-                    ClockSkew = TimeSpan.Zero // Optionally, remove clock skew for immediate expiration
-                };
-
-                var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
-
-                // Check if token is expired by comparing ValidTo with current UTC time
-                if (validatedToken.ValidTo < DateTime.UtcNow)
-                {
-                    return null;  // Token has expired
-                }
-
-                return principal;
-            }
-            catch
-            {
-                return null;  // Token validation failed
-            }
-        }
     }
 
     // Login request model
