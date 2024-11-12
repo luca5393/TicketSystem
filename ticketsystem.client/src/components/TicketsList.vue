@@ -84,20 +84,19 @@ export default {
 </script>
 
 <style scoped>
-/* Container styling */
+
 div {
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: var(--color-background);
   border-radius: 8px;
   max-width: 700px;
-  max-height: 65vh; /* Maximum height */
-  overflow-y: auto; /* Enables vertical scroll when content overflows */
+  max-height: 65vh;
+  overflow-y: auto;
   margin: 0 auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Title Styling */
 p {
   font-size: 24px;
   font-weight: bold;
@@ -106,7 +105,6 @@ p {
   color: var(--input-color-text);
 }
 
-/* Select dropdowns */
 select {
   padding: 8px 12px;
   font-size: 16px;
@@ -118,13 +116,11 @@ select {
   cursor: pointer;
 }
 
-/* Ticket List */
 ul {
   list-style-type: none;
   padding: 0;
 }
 
-/* Ticket Item Styling */
 .ticket-item {
   background-color: var(--color-background);
   border: 1px solid var(--color-button);
@@ -136,16 +132,11 @@ ul {
   cursor: pointer;
 }
 
-/* Hover effect for ticket item */
 .ticket-item:hover {
   background-color: var(--color-background);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Priority Label */
-
-
-/* Date formatting */
 .ticket-item span.date {
   font-size: 0.9em;
   color: #777;
