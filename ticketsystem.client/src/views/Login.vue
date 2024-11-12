@@ -3,7 +3,7 @@
     <div class="wrapper">
       <h1>Login</h1>
       <div class="input-box">
-        <input v-model="email" type="email" id="username" name="email" placeholder="Username" required />
+        <input v-model="email" type="email" id="username" name="email" placeholder="Email" required />
       </div>
       <div class="input-box">
         <input v-model="password" type="password" id="password" name="password" placeholder="Password" required />

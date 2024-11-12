@@ -109,8 +109,8 @@ h1 {
 }
 
 .select-products option {
-  background-color: var(--color-background); /* Matches background */
-  color: var(--input-color-text); /* Matches text color */
+  background-color: var(--color-background);
+  color: var(--input-color-text);
 }
 
 .description-input {
