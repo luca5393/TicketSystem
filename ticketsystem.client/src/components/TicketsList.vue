@@ -88,12 +88,13 @@ export default {
 
         const roleResponseData = await roleResponse.json();
 
-        console.log(roleResponseData);
         if (roleResponseData && roleResponseData.tickets) {
-          this.items += roleResponseData.tickets;
-          console.log(this.items);
-          //removeDuplicates(this.items);
-          console.log(this.items);
+          console.log(roleResponseData);
+          this.items = this.items.concat(roleResponseData.tickets)
+          this.items = this.items.filter(
+            (item, index, self) => 
+              index === self.findIndex((obj) => obj.id === item.id)
+          );
         } else {
           console.error("No tickets found in response");
         }
