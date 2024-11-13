@@ -161,7 +161,7 @@ namespace TicketSystem.Server.Controllers
         [HttpGet("roleTicketList")]
         public async Task<IActionResult> RoleTicketList([FromHeader(Name = "Authorization")] string authHeader)
         {
-            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
                 return Unauthorized(new { message = "Could not get user." });
@@ -199,40 +199,8 @@ namespace TicketSystem.Server.Controllers
                 return Unauthorized(new { message = "Could not get user." });
             }
 
-            if (user.Role_id != 0)
-            {
-                var result = await _supabaseClient.From<Ticket>().Where(x => x.Creator_id == user.Id).Order("created_at", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
-                var ticketList = result.Models.Select(ticket => new Ticket
-                {
-                    Id = ticket.Id,
-                    Creator_id = ticket.Creator_id,
-                    Role_id = ticket.Role_id,
-                    Product_id = ticket.Product_id,
-                    Priority = ticket.Priority,
-                    Title = ticket.Title,
-                    Desc = ticket.Desc,
-                    Answer = ticket.Answer
-                }).ToList();
-
-                return Ok(new { message = "Success", tickets = ticketList });
-            }
-
-            return Ok(new { message = "No tickets assigned to your role" });
-        }
-
-        [HttpGet("ticket")]
-        public async Task<IActionResult> Ticket(int id)//, [FromHeader(Name = "Authorization")] string authHeader)
-        {
-            /*
-            // Retrieve the user's information
-            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
-            if (user == null)
-            {
-                return Unauthorized(new { message = "Could not get user." });
-            }
-            */
-            var result = await _supabaseClient.From<Ticket>().Where(x => x.Id == id).Get();
-            var ticketList = result.Models.Select(ticket => new TicketViewModel
+            var result = await _supabaseClient.From<Ticket>().Where(x => x.Creator_id == user.Id).Order("created_at", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
+            var ticketList = result.Models.Select(ticket => new Ticket
             {
                 Id = ticket.Id,
                 Creator_id = ticket.Creator_id,
@@ -244,7 +212,52 @@ namespace TicketSystem.Server.Controllers
                 Answer = ticket.Answer
             }).ToList();
 
-            return Ok(new { message = "Success", tickets = ticketList });
+            if (ticketList.Count == 0)
+            {
+                return Ok(new { message = "You have no tickets", tickets = ticketList });
+            }
+
+            return Ok(new { message = "Fetched tickets successfully", tickets = ticketList });
+        }
+
+        [HttpGet("ticket")]
+        public async Task<IActionResult> Ticket(int id, [FromHeader(Name = "Authorization")] string authHeader)
+        {
+            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Could not get user." });
+            }
+
+            try
+            {
+                var result = await _supabaseClient.From<Ticket>().Where(x => x.Id == id).Get();
+                var ticketList = result.Models.Select(ticket => new TicketViewModel
+                {
+                    Id = ticket.Id,
+                    Creator_id = ticket.Creator_id,
+                    Role_id = ticket.Role_id,
+                    Product_id = ticket.Product_id,
+                    Priority = ticket.Priority,
+                    Title = ticket.Title,
+                    Desc = ticket.Desc,
+                    Answer = ticket.Answer
+                }).ToList();
+
+                if (user.Id != ticketList.First().Creator_id)
+                {
+                    if (user.Role_id != ticketList.First().Role_id)
+                    {
+                        return Unauthorized(new { message = "You do not have permissions to fetch this ticket" });
+                    }
+                }
+
+                return Ok(new { message = "Fetched tickets successfully", tickets = ticketList });
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(new { message = "There was an error fetching the ticketlist", error = ex});
+            }
         }
 
         //TODO - MAKE A METHOD TO FETCH A SINGLE TICKET TO EDIT IT
