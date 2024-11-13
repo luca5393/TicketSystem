@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,6 +39,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "TicketController.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\TicketController.cs",
+              "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\TicketController.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\TicketController.cs",
+              "RelativeToolTip": "TicketSystem.Server\\Controllers\\TicketController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwEMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T13:23:59.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ProductController.cs",
               "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\ProductController.cs",
@@ -47,7 +64,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ProductList.vue",
               "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\ProductList.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\components\\ProductList.vue",
@@ -55,12 +72,11 @@
               "RelativeToolTip": "ticketsystem.client\\src\\components\\ProductList.vue",
               "ViewState": "AgIAAAIAAAAAAAAAAAAAABgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-11-13T12:25:12.143Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-13T12:25:12.143Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Header.vue",
               "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\Header.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\components\\Header.vue",
@@ -72,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Login.vue",
               "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Login.vue",
@@ -84,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Signup.vue",
               "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Signup.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Signup.vue",
