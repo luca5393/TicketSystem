@@ -1,48 +1,49 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div class="wrapper">
-      <h1>Login</h1>
-      <div class="input-box">
-        <input v-model="email" type="email" id="username" name="email" placeholder="Email" required />
-      </div>
-      <div class="input-box">
-        <input v-model="password" type="password" id="password" name="password" placeholder="Password" required />
-      </div>
-      <div class="remember-forgot">
-        <label><input type="checkbox" /> Remember me</label>
-        <a href="#">Forgot password?</a>
-      </div>
-      <button @click="submitForm" class="btn">Login</button>
-      <div class="register-link">
-        <p>Don't have an account? <a href="Signup">Register</a></p>
-      </div>
-      <!-- Error message for failed login -->
+        <form @submit.prevent="submitForm">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input v-model="email" type="email" placeholder="Email" required />
+                <i class="bx bxs-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input v-model="password" type="password" placeholder="Password" required />
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
     </div>
-  </template>
+</template>
 
-  <script setup>
-  import { ref, inject } from 'vue';
+<script setup>
+import { ref } from 'vue';
+import supabase from '@/supabase';
+import { useRouter } from 'vue-router';
 
-  const router = inject('router');
-  const axios = inject('axios');
+const email = ref('');
+const password = ref('');
+const router = useRouter();
 
-  const email = ref('');
-  const password = ref('');
-
-  const submitForm = async () => {
+const submitForm = async () => {
     try {
-      const response = await axios.post('https://localhost:7253/Api/login', {
-        email: email.value,
-        password: password.value
-      });
+        const { data: { session }, error } = await supabase.auth.signInWithPassword({
+            email: email.value,
+            password: password.value,
+        });
 
-      if (response.status === 200) {
+        // If there is an error, show the message
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        // Redirect user to home page after successful login
         router.push({ name: 'Home' });
-      } else {
-        console.error('Login failed');
-      }
+
     } catch (error) {
-      console.error('An error occurred during login:', error);
+        console.error('An error occurred during login:', error);
+        alert('An error occurred. Please try again.');
     }
   };
   </script>

@@ -1,43 +1,80 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div class="wrapper">
-        <form  method="post">
-            <h1>Signup</h1>
-            <div class="input-box">
-                <input type="text" name="username" placeholder="Username" required>
-                <i class='bx bxs-user'></i>
-            </div>
-            <div class="input-box">
-                <input type="password" name="password" placeholder="Password" required>
-                <i class='bx bxs-lock-alt'></i>
-            </div>
-            <div class="input-box">
-                <input type="password" name="repeatPassword" placeholder="Repeat password" required>
-                <i class='bx bxs-lock-alt'></i>
-            </div>
-            <div class="input-box">
-                <input type="email" name="email" placeholder="Email" required>
-                <i class='bx bxs-envelope'></i>
-            </div>
-            <button type="submit" class="btn" @click="formSubmit" >Signup</button>
-        </form>
-
-    </div>
+  <div class="wrapper">
+    <form @submit.prevent="formSubmit">
+      <h1>Signup</h1>
+      <div class="input-box">
+        <input v-model="username" type="text" placeholder="Username" required />
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input v-model="email" type="email" placeholder="Email" required />
+        <i class='bx bxs-envelope'></i>
+      </div>
+      <div class="input-box">
+        <input v-model="password" type="password" placeholder="Password" required />
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="input-box">
+        <input v-model="repeatPassword" type="password" placeholder="Repeat password" required />
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <button type="submit" class="btn">Signup</button>
+    </form>
+  </div>
 </template>
 
-<script lang="js">
+<script>
+import { useRouter } from 'vue-router';
+
 export default {
-  name: 'SignUp',
+  data() {
+    return {
+      username: '',
+      email: '',
+      password: '',
+      repeatPassword: '',
+    };
+  },
   methods: {
-    formSubmit() {
-      this.$router.push("login");
+    async formSubmit() {
+      if (this.password !== this.repeatPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      try {
+        // Send the user ID to the backend to store custom data
+        const response = await fetch('http://localhost:7253/Api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: this.username,
+            email: this.email,
+            password: this.password,
+            role: 0,
+          })
+        });
+
+        if (!response.ok) {
+          alert('An error occurred while saving user data.');
+          return;
+        }
+
+        // Redirect or perform additional actions
+        const router = useRouter(); // Get the router instance
+        router.push({ name: 'login' });
+      } catch (error) {
+        console.error('An error occurred during signup:', error);
+        alert('An error occurred. Please try again.');
+      }
     }
   }
 };
-
 </script>
 
-<style scoped>
 
+<style scoped>
 * {
   margin: 0;
   padding: 0;

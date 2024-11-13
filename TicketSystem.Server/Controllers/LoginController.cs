@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Supabase;
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,48 +22,54 @@ namespace TicketSystem.Server.Controllers
 
         private Supabase.Client _supabaseClient = new SupabaseConnector().GetSupabaseClient();
 
+<<<<<<< HEAD
+        [HttpPost("signup")]
+        public async Task<IActionResult> Signup([FromBody] UserSignIn user)
+=======
         private Validator _validator = new Validator();
         /*
         // POST api/login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
+>>>>>>> main
         {
-            try
+            if (user == null || string.IsNullOrEmpty(user.password) || string.IsNullOrEmpty(user.username) || string.IsNullOrEmpty(user.email))
             {
-                // Sign in the user with Supabase Auth
-                var authResponse = await _supabaseClient.Auth.SignIn(loginRequest.Email, loginRequest.Password);
-
-                if (authResponse.User == null)
-                {
-                    return Unauthorized(new { message = "Invalid login credentials." });
-                }
-
-                // Return the access token and user details
-                return Ok(new
-                {
-                    message = "Login successful",
-                    accessToken = authResponse.AccessToken,     
-                    refreshToken = authResponse.RefreshToken,
-                    userEmail = authResponse.User?.Email
-                });
+                return BadRequest(new { message = "Invalid user data." });
             }
-            catch (Exception ex)
+            var session = await _supabaseClient.Auth.SignUp(user.email, user.password);
+            if (session == null) 
             {
-                return Unauthorized(new { message = "Invalid login credentials or an error occurred." });
+                return BadRequest(new { message = "Database fail" });
             }
+
+            var id = session.User.Id;
+            var newUser = new User
+            {
+                id = id,
+                role = 0,
+                username = user.username,
+            };
+
+            await _supabaseClient.From<User>().Insert(newUser);
+            return Ok(new { message = "User created successfully", userId = user.username });
         }
 
-        // GET api/user
-        [HttpGet("user")]
-        public async Task<IActionResult> GetUserData([FromHeader(Name = "Authorization")] string authHeader)
+
+
+        [Table("users")]
+        public class User : BaseModel
         {
-            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
-            {
-                return Unauthorized(new { message = "Missing or invalid Authorization header." });
-            }
+            [PrimaryKey("id", false)]
+            public string id { get; set; }
 
-            var token = authHeader.Substring("Bearer ".Length).Trim();
+            [Column("role")]
+            public int role { get; set; }
 
+<<<<<<< HEAD
+            [Column("username")]
+            public string username { get; set; }
+=======
             // Validate the JWT token manually
             var validatedToken = _validator.ValidateToken(token);
             if (validatedToken == null)
@@ -76,12 +85,25 @@ namespace TicketSystem.Server.Controllers
             }
 
             return Ok(new { message = "Authenticated user", userEmail = user.Email });
+>>>>>>> main
         }
 
-        // POST api/user/data
-        [HttpPost("user/data")]
-        public async Task<IActionResult> PostUserData([FromHeader(Name = "Authorization")] string authHeader)
+        public class UserSignIn
         {
+<<<<<<< HEAD
+            public int role { get; set; }
+            public string username { get; set; }
+            public string password { get; set; }
+            public string email { get; set; }
+        }
+
+        // Login request model
+        public class LoginRequest
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
+=======
             if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
             {
                 return Unauthorized(new { message = "Missing or invalid Authorization header." });
@@ -107,12 +129,6 @@ namespace TicketSystem.Server.Controllers
             return Ok(new { message = "Data received from authenticated user", userEmail = user.Email });
         }
         */
-    }
-
-    // Login request model
-    public class LoginRequest
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
+>>>>>>> main
     }
 }
