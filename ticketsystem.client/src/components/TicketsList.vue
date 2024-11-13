@@ -2,9 +2,7 @@
   <div>
     <p class="title">Tickets List</p>
 
-    <!-- Filters and Delete Button Row -->
     <div class="controls">
-      <!-- Product Filter -->
       <select v-model="selectedProduct">
         <option value="AP">All Products</option>
         <option v-for="product in uniqueProducts" :key="product" :value="product">
@@ -12,32 +10,20 @@
         </option>
       </select>
 
-      <!-- Sort by dropdown -->
       <select v-model="sortOption">
         <option value="newest">Newest</option>
         <option value="oldest">Oldest</option>
         <option value="priority">Priority</option>
       </select>
-
-      <!-- Delete Selected Button -->
-      <button @click="deleteSelected" class="delete-selected-button">Delete</button>
     </div>
 
-    <!-- Ticket List -->
     <ul>
       <li v-for="item in sortedItems" :key="item.id" class="ticket-container">
-        <!-- Checkbox for selecting items to delete -->
-        <input
-          type="checkbox"
-          v-model="selectedItems"
-          :value="item.id"
-          class="delete-checkbox"
-        />
         <router-link :to="{ name: 'TicketView', params: { id: item.id } }">
           <div class="ticket-item">
             <span>
               {{ item.name }} - {{ item.product }} - Priority: {{ item.priority }} - Date:
-              {{ new Date(item.time).toLocaleString() }}
+              {{ new Date(item.time).toLocaleString() }} | Status: {{ item.status }}
             </span>
           </div>
         </router-link>
@@ -47,26 +33,53 @@
 </template>
 
 <script>
+import supabase from '@/supabase';
+
 export default {
   name: 'TicketsList',
   data() {
     return {
       selectedProduct: "AP",
       sortOption: "newest",
-      selectedItems: [], // Holds IDs of selected items to delete
-      items: [
-        { id: 1, name: 'Item A', product: 'Product 1', priority: 4, time: "2024-12-05T13:45:30Z" },
-        { id: 2, name: 'Item B', product: 'Product 2', priority: 2, time: "2024-10-05T13:45:30Z" },
-        { id: 3, name: 'Item C', product: 'Product 1', priority: 3, time: "2024-11-05T15:45:30Z" },
-      ],
+      items: [],
     };
   },
+  mounted() {
+    this.fetchTicketList();
+  },
   methods: {
-    deleteSelected() {
-      // Remove items that are in the selectedItems array
-      this.items = this.items.filter(item => !this.selectedItems.includes(item.id));
-      // Clear the selected items array
-      this.selectedItems = [];
+    async fetchTicketList() {
+      const token = await supabase.auth.getSession();
+      console.log("TOKEN ADHBWYDHBA:  "+token);
+      try {
+        const response = await fetch('https://localhost:7253/Product/productList', {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token.access_token}`
+          },
+          body: JSON.stringify({
+            username: this.username,
+            email: this.email,
+            password: this.password,
+            role: 0,
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        if (responseData && responseData.products) {
+          this.items = responseData.products;
+        } else {
+          console.error("No tickets found in response");
+        }
+      } catch (error) {
+        console.error("Error fetching tickets:", error);
+      }
     }
   },
   computed: {
@@ -76,14 +89,13 @@ export default {
     },
     filteredItems() {
       if (this.selectedProduct === "AP") {
-        return this.items; // Show all products if 'All Products' is selected
+        return this.items;
       }
       return this.items.filter(item => item.product === this.selectedProduct);
     },
     sortedItems() {
       let sorted = [...this.filteredItems];
 
-      // Sorting logic based on the selected sort option
       switch (this.sortOption) {
         case 'oldest':
           sorted.sort((a, b) => new Date(a.time) - new Date(b.time));
