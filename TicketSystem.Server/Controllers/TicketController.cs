@@ -30,32 +30,21 @@ namespace TicketSystem.Server.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
-                {
-                    return Unauthorized(new { message = "Missing or invalid Authorization header." });
-                }
-
-                var token = authHeader.Substring("Bearer ".Length).Trim();
-
-                // Validate the JWT token manually
-
-                var validatedToken = _validator.ValidateToken(token);
-                if (validatedToken == null)
-                {
-                    return Unauthorized(new { message = "Invalid or expired token." });
-                }
-
                 // Retrieve the user's information
-                var user = await _supabaseClient.Auth.GetUser(_supabaseJwtSecret);
-                if (user == null)
+                User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                if (user == null) 
                 {
-                    return Unauthorized(new { message = "Supabase user not found." });
+                    return Unauthorized(new { message = "Could not get user." });
+                }
+                if (user.Role_id == 0)
+                {
+                    return Unauthorized(new { message = "No permission" });
                 }
 
                 var model = new Ticket
                 {
-                    Creator_id = user.Id,       //user.Id Example value for creator ID
-                    Role_id = 1,          // Example value for role ID
+                    Creator_id = ticket.Creator_id,       //user.Id Example value for creator ID
+                    Role_id = ticket.Role_id,          // Example value for role ID
                     Product_id = ticket.Product_id,       // Example value for product ID
                     Priority = ticket.Priority,         // Example value for priority
                     Title = ticket.Title,  // Your title value
@@ -81,28 +70,18 @@ namespace TicketSystem.Server.Controllers
         [HttpPost("removeTicket")]
         public async Task<IActionResult> RemoveTicket([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
-            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
-            {
-                return Unauthorized(new { message = "Missing or invalid Authorization header." });
-            }
-
-            var token = authHeader.Substring("Bearer ".Length).Trim();
-
-            // Validate the JWT token manually
-            var validatedToken = _validator.ValidateToken(token);
-            if (validatedToken == null)
-            {
-                return Unauthorized(new { message = "Invalid or expired token." });
-            }
-
             // Retrieve the user's information
-            var user = await _supabaseClient.Auth.GetUser(_supabaseJwtSecret);
+            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
-                return Unauthorized(new { message = "Supabase user not found." });
+                return Unauthorized(new { message = "Could not get user." });
+            }
+            if (user.Role_id == 0)
+            {
+                return Unauthorized(new { message = "No permission" });
             }
 
-            //TODO: ADD CONFIRMATION THAT THE DELETE IS THE CREATOR OR A PERSON WITH PERMISSION
+            //TODO: add so own user can delete ticket
 
             await _supabaseClient
               .From<Ticket>()
@@ -110,36 +89,28 @@ namespace TicketSystem.Server.Controllers
               .Delete();
 
             // Perform some action with the authenticated user
-            return Ok(new { message = "Data received from authenticated user", userEmail = user.Email });
+            return Ok(new { message = "Data received from authenticated user" });
         }
 
         // POST
-        [HttpPost("changeTicketRole")]
-        public async Task<IActionResult> ChangeTicketRole([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
+        [HttpPost("changeTicket")]
+        public async Task<IActionResult> ChangeTickete([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
-            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
-            {
-                return Unauthorized(new { message = "Missing or invalid Authorization header." });
-            }
-
-            var token = authHeader.Substring("Bearer ".Length).Trim();
-
-            // Validate the JWT token manually
-            var validatedToken = _validator.ValidateToken(token);
-            if (validatedToken == null)
-            {
-                return Unauthorized(new { message = "Invalid or expired token." });
-            }
-
             // Retrieve the user's information
-            var user = await _supabaseClient.Auth.GetUser(_supabaseJwtSecret);
+            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
-                return Unauthorized(new { message = "Supabase user not found." });
+                return Unauthorized(new { message = "Could not get user." });
+            }
+            if (user.Role_id == 0)
+            {
+                return Unauthorized(new { message = "No permission" });
             }
 
-            //TODO: ADD CONFIRMATION THAT THE DELETE IS THE CREATOR OR A PERSON WITH PERMISSION
+            //TODO: ADD CONFIRMATION THAT THE Ticket is the actual ticket
 
+
+            //TODO: Add so it updates all of the tickets table not just role
             var update = await _supabaseClient
               .From<Ticket>()
               .Where(x => x.Id == ticket.Id)
@@ -148,51 +119,24 @@ namespace TicketSystem.Server.Controllers
 
 
             // Perform some action with the authenticated user
-            return Ok(new { message = "Data received from authenticated user", userEmail = user.Email });
-        }
-
-        // POST
-        [HttpPost("changeTicketPriority")]
-        public async Task<IActionResult> ChangeTicketPriority([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
-        {
-            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
-            {
-                return Unauthorized(new { message = "Missing or invalid Authorization header." });
-            }
-
-            var token = authHeader.Substring("Bearer ".Length).Trim();
-
-            // Validate the JWT token manually
-            var validatedToken = _validator.ValidateToken(token);
-            if (validatedToken == null)
-            {
-                return Unauthorized(new { message = "Invalid or expired token." });
-            }
-
-            // Retrieve the user's information
-            var user = await _supabaseClient.Auth.GetUser(_supabaseJwtSecret);
-            if (user == null)
-            {
-                return Unauthorized(new { message = "Supabase user not found." });
-            }
-
-            //TODO: ADD CONFIRMATION THAT THE DELETE IS THE CREATOR OR A PERSON WITH PERMISSION
-
-            var update = await _supabaseClient
-              .From<Ticket>()
-              .Where(x => x.Id == ticket.Id)
-              .Set(x => x.Priority, ticket.Priority)
-              .Update();
-
-
-            // Perform some action with the authenticated user
-            return Ok(new { message = "Data received from authenticated user", userEmail = user.Email });
+            return Ok(new { message = "Data received from authenticated user" });
         }
 
         // POST
         [HttpPost("ticketToQNA")]
         public async Task<IActionResult> TicketToQNA([FromHeader(Name = "Authorization")] string authHeader)
         {
+            // Retrieve the user's information
+            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Could not get user." });
+            }
+            if (user.Role_id == 0)
+            {
+                return Unauthorized(new { message = "No permission" });
+            }
+
             //QNA CONVERT LOGIC
 
             // Perform some action with the authenticated user
@@ -200,59 +144,23 @@ namespace TicketSystem.Server.Controllers
         }
 
         // GET
-        [HttpGet("Ticket")]
-        public async Task<IActionResult> Ticket([FromHeader(Name = "Authorization")] string authHeader)
-        {
-            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
-            {
-                return Unauthorized(new { message = "Missing or invalid Authorization header." });
-            }
-
-            var token = authHeader.Substring("Bearer ".Length).Trim();
-
-            // Validate the JWT token manually
-            var validatedToken = _validator.ValidateToken(token);
-            if (validatedToken == null)
-            {
-                return Unauthorized(new { message = "Invalid or expired token." });
-            }
-
-            // Retrieve the user's information
-            var user = await _supabaseClient.Auth.GetUser(_supabaseJwtSecret);
-            if (user == null)
-            {
-                return Unauthorized(new { message = "Supabase user not found." });
-            }
-
-            return Ok(new { message = "Authenticated user", userEmail = user.Email });
-        }
-
-        // GET
         [HttpGet("ticketList")]
         public async Task<IActionResult> TicketList([FromHeader(Name = "Authorization")] string authHeader)
         {
-            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
-            {
-                return Unauthorized(new { message = "Missing or invalid Authorization header." });
-            }
-
-            var token = authHeader.Substring("Bearer ".Length).Trim();
-
-            // Validate the JWT token manually
-            var validatedToken = _validator.ValidateToken(token);
-            if (validatedToken == null)
-            {
-                return Unauthorized(new { message = "Invalid or expired token." });
-            }
-
             // Retrieve the user's information
-            var user = await _supabaseClient.Auth.GetUser(_supabaseJwtSecret);
+            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
-                return Unauthorized(new { message = "Supabase user not found." });
+                return Unauthorized(new { message = "Could not get user." });
             }
+            var result = await _supabaseClient.From<Ticket>().Where(x => x.Creator_id == user.Id).Get();
+            if (user.Role_id != 0) 
+            {
+                result = await _supabaseClient.From<Ticket>().Where(x => x.Role_id == user.Role_id).Get();
+            }
+            var ticketlist = result.Models;
 
-            return Ok(new { message = "Authenticated user", userEmail = user.Email });
+            return Ok(new { message = "Authenticated user", tickets = ticketlist });
         }
 
 

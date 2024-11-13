@@ -20,7 +20,7 @@ namespace TicketSystem.Server.Controllers
         private Supabase.Client _supabaseClient = new SupabaseConnector().GetSupabaseClient();
 
         private Validator _validator = new Validator();
-
+        /*
         // POST api/login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
@@ -106,7 +106,7 @@ namespace TicketSystem.Server.Controllers
             // Perform some action with the authenticated user
             return Ok(new { message = "Data received from authenticated user", userEmail = user.Email });
         }
-
+        */
     }
 
     // Login request model
