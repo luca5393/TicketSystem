@@ -31,8 +31,6 @@ namespace TicketSystem.Server.Controllers
         {
             try
             {
-
-                // Retrieve the user's information
                 User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
                 if (user == null) 
                 {
@@ -43,28 +41,30 @@ namespace TicketSystem.Server.Controllers
                     return Unauthorized(new { message = "No permission" });
                 }
 
-                var model = new Ticket
+                try
                 {
-                    Creator_id = ticket.Creator_id,       //user.Id Example value for creator ID
-                    Role_id = ticket.Role_id,          // Example value for role ID
-                    Product_id = ticket.Product_id,       // Example value for product ID
-                    Priority = ticket.Priority,         // Example value for priority
-                    Title = ticket.Title,  // Your title value
-                    Desc = ticket.Desc, // Example body text
-                };
+                    var model = new Ticket
+                    {
+                        Creator_id = ticket.Creator_id,       //user.Id Example value for creator ID
+                        Role_id = ticket.Role_id,          // Example value for role ID
+                        Product_id = ticket.Product_id,       // Example value for product ID
+                        Priority = ticket.Priority,         // Example value for priority
+                        Title = ticket.Title,  // Your title value
+                        Desc = ticket.Desc, // Example body text
+                    };
 
+                    await _supabaseClient.From<Ticket>().Insert(model);
 
-                await _supabaseClient.From<Ticket>().Insert(model);
-
-                // Return the access token and user details
-                return Ok(new
+                    return Ok(new { message = "Ticket created successfully" });
+                }
+                catch (Exception ex)
                 {
-                    message = "Successful",
-                });
+                    return Unauthorized(new { message = "There was an error creating the ticket", error = ex.Message });
+                }
             }
             catch (Exception ex)
             {
-                return Unauthorized(new { message = "Invalid login credentials or an error occurred." + ex });
+                return Unauthorized(new { message = "There was an error trying to validate the token or getting the user", error = ex.Message });
             }
         }
 
@@ -72,64 +72,86 @@ namespace TicketSystem.Server.Controllers
         [HttpPost("removeTicket")]
         public async Task<IActionResult> RemoveTicket([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
-            /*
-            // Retrieve the user's information
-            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
-            if (user == null)
+            try
             {
-                return Unauthorized(new { message = "Could not get user." });
+                User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                if (user == null)
+                {
+                    return Unauthorized(new { message = "Could not get user." });
+                }
+                if (user.Role_id == 0)
+                {
+                    return Unauthorized(new { message = "No permission" });
+                }
+            
+                if (user.Id == ticket.Creator_id || user.Role_id > 0)
+                {
+                    try
+                    {
+                        await _supabaseClient
+                          .From<Ticket>()
+                          .Where(x => x.Id == ticket.Id)
+                          .Delete();
+
+                        // Perform some action with the authenticated user
+                        return Ok(new { message = "Ticket removed successfully" });
+                    }
+                    catch (Exception ex)
+                    {
+                        return Unauthorized(new { message = "There was an error editing the ticket", error = ex });
+                    }
+                }
+
+                return Unauthorized(new { message = "You do not have permission to remove this ticket"});
+
             }
-            if (user.Role_id == 0)
+            catch (Exception ex)
             {
-                return Unauthorized(new { message = "No permission" });
+                return Unauthorized(new { message = "There was an error trying to validate the token or getting the user", error = ex.Message });
             }
-            */
-            //TODO: add so own user can delete ticket
-
-            await _supabaseClient
-              .From<Ticket>()
-              .Where(x => x.Id == ticket.Id)
-              .Delete();
-
-            // Perform some action with the authenticated user
-            return Ok(new { message = "Data received from authenticated user" });
         }
 
         // POST
         [HttpPost("changeTicket")]
-        public async Task<IActionResult> ChangeTickete([FromBody] Ticket ticket)//, [FromHeader(Name = "Authorization")] string authHeader)
+        public async Task<IActionResult> ChangeTicket([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
-            /*
-            // Retrieve the user's information
-            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
-            if (user == null)
+            try
             {
-                return Unauthorized(new { message = "Could not get user." });
+                User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                if (user == null)
+                {
+                    return Unauthorized(new { message = "Could not get user." });
+                }
+                if (user.Role_id == 0)
+                {
+                    return Unauthorized(new { message = "No permission" });
+                }
+            
+                try
+                {
+                    var update = await _supabaseClient
+                      .From<Ticket>()
+                      .Where(x => x.Id == ticket.Id)
+                      .Set(x => x.Creator_id, ticket.Creator_id)
+                      .Set(x => x.Role_id, ticket.Role_id)
+                      .Set(x => x.Product_id, ticket.Product_id)
+                      .Set(x => x.Priority, ticket.Priority)
+                      .Set(x => x.Title, ticket.Title)
+                      .Set(x => x.Desc, ticket.Desc)
+                      .Set(x => x.Answer, ticket.Answer)
+                      .Update();
+
+                    return Ok(new { message = "Ticket updated successfully" });
+                }
+                catch (Exception ex)
+                {
+                    return Unauthorized(new { message = "There was an error editing the ticket", error = ex.Message });
+                }
             }
-            if (user.Role_id == 0)
+            catch (Exception ex)
             {
-                return Unauthorized(new { message = "No permission" });
+                return Unauthorized(new { message = "There was an error trying to validate the token or getting the user", error = ex.Message });
             }
-            */
-            //TODO: ADD CONFIRMATION THAT THE Ticket is the actual ticket
-
-
-            //TODO: Add so it updates all of the tickets table not just role
-            var update = await _supabaseClient
-              .From<Ticket>()
-              .Where(x => x.Id == ticket.Id)
-              .Set(x => x.Creator_id, ticket.Creator_id)
-              .Set(x => x.Role_id, ticket.Role_id)
-              .Set(x => x.Product_id, ticket.Product_id)
-              .Set(x => x.Priority, ticket.Priority)
-              .Set(x => x.Title, ticket.Title)
-              .Set(x => x.Desc, ticket.Desc)
-              .Set(x => x.Answer, ticket.Answer)
-              .Update();
-
-
-            // Perform some action with the authenticated user
-            return Ok(new { message = "Data received from authenticated user" });
         }
 
         // POST
@@ -161,106 +183,137 @@ namespace TicketSystem.Server.Controllers
         [HttpGet("roleTicketList")]
         public async Task<IActionResult> RoleTicketList([FromHeader(Name = "Authorization")] string authHeader)
         {
-            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
-            if (user == null)
+            try
             {
-                return Unauthorized(new { message = "Could not get user." });
-            }
-
-            if (user.Role_id != 0)
-            {
-                var result = await _supabaseClient.From<Ticket>().Where(x => x.Role_id == user.Role_id).Order("priority", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
-                var ticketList = result.Models.Select(ticket => new Ticket
+                User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                if (user == null)
                 {
-                    Id = ticket.Id,
-                    Creator_id = ticket.Creator_id,
-                    Role_id = ticket.Role_id,
-                    Product_id = ticket.Product_id,
-                    Priority = ticket.Priority,
-                    Title = ticket.Title,
-                    Desc = ticket.Desc,
-                    Answer = ticket.Answer
-                }).ToList();
+                    return Unauthorized(new { message = "Could not get user." });
+                }
 
-                return Ok(new { message = "Success", tickets = ticketList });
+                if (user.Role_id != 0)
+                {
+                    try
+                    {
+                        var result = await _supabaseClient.From<Ticket>().Where(x => x.Role_id == user.Role_id).Order("priority", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
+                        var ticketList = result.Models.Select(ticket => new Ticket
+                        {
+                            Id = ticket.Id,
+                            Creator_id = ticket.Creator_id,
+                            Role_id = ticket.Role_id,
+                            Product_id = ticket.Product_id,
+                            Priority = ticket.Priority,
+                            Title = ticket.Title,
+                            Desc = ticket.Desc,
+                            Answer = ticket.Answer
+                        }).ToList();
+
+                        return Ok(new { message = "Success", tickets = ticketList });
+                    }
+                    catch (Exception ex)
+                    {
+                        return Unauthorized(new { message = "There was an error fetching the ticketlist", error = ex.Message });
+                    }
+                }
+
+                return Ok(new { message = "A base user cannot view tickets that aren't your own" });
             }
-
-            return Ok(new { message = "No tickets assigned to your role" });
+            catch (Exception ex)
+            {
+                return Unauthorized(new { message = "There was an error trying to validate the token or getting the user", error = ex.Message });
+            }
         }
 
         [HttpGet("userTicketList")]
         public async Task<IActionResult> UserTicketList([FromHeader(Name = "Authorization")] string authHeader)
         {
-
-            // Retrieve the user's information
-            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
-            if (user == null)
+            try
             {
-                return Unauthorized(new { message = "Could not get user." });
+                User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                if (user == null)
+                {
+                    return Unauthorized(new { message = "Could not get user." });
+                }
+
+                try
+                {
+                    var result = await _supabaseClient.From<Ticket>().Where(x => x.Creator_id == user.Id).Order("created_at", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
+                    var ticketList = result.Models.Select(ticket => new Ticket
+                    {
+                        Id = ticket.Id,
+                        Creator_id = ticket.Creator_id,
+                        Role_id = ticket.Role_id,
+                        Product_id = ticket.Product_id,
+                        Priority = ticket.Priority,
+                        Title = ticket.Title,
+                        Desc = ticket.Desc,
+                        Answer = ticket.Answer
+                    }).ToList();
+
+                    if (ticketList.Count == 0)
+                    {
+                        return Ok(new { message = "You have no tickets", tickets = ticketList });
+                    }
+
+                    return Ok(new { message = "Fetched tickets successfully", tickets = ticketList });
+                }
+                catch (Exception ex)
+                {
+                    return Unauthorized(new { message = "There was an error fetching the ticketlist", error = ex.Message });
+                }
             }
-
-            var result = await _supabaseClient.From<Ticket>().Where(x => x.Creator_id == user.Id).Order("created_at", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
-            var ticketList = result.Models.Select(ticket => new Ticket
+            catch (Exception ex)
             {
-                Id = ticket.Id,
-                Creator_id = ticket.Creator_id,
-                Role_id = ticket.Role_id,
-                Product_id = ticket.Product_id,
-                Priority = ticket.Priority,
-                Title = ticket.Title,
-                Desc = ticket.Desc,
-                Answer = ticket.Answer
-            }).ToList();
-
-            if (ticketList.Count == 0)
-            {
-                return Ok(new { message = "You have no tickets", tickets = ticketList });
+                return Unauthorized(new { message = "There was an error trying to validate the token or getting the user", error = ex.Message });
             }
-
-            return Ok(new { message = "Fetched tickets successfully", tickets = ticketList });
         }
 
         [HttpGet("ticket")]
         public async Task<IActionResult> Ticket(int id, [FromHeader(Name = "Authorization")] string authHeader)
         {
-            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
-            if (user == null)
-            {
-                return Unauthorized(new { message = "Could not get user." });
-            }
-
             try
             {
-                var result = await _supabaseClient.From<Ticket>().Where(x => x.Id == id).Get();
-                var ticketList = result.Models.Select(ticket => new TicketViewModel
+                User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                if (user == null)
                 {
-                    Id = ticket.Id,
-                    Creator_id = ticket.Creator_id,
-                    Role_id = ticket.Role_id,
-                    Product_id = ticket.Product_id,
-                    Priority = ticket.Priority,
-                    Title = ticket.Title,
-                    Desc = ticket.Desc,
-                    Answer = ticket.Answer
-                }).ToList();
-
-                if (user.Id != ticketList.First().Creator_id)
-                {
-                    if (user.Role_id != ticketList.First().Role_id)
-                    {
-                        return Unauthorized(new { message = "You do not have permissions to fetch this ticket" });
-                    }
+                    return Unauthorized(new { message = "Could not get user." });
                 }
 
-                return Ok(new { message = "Fetched tickets successfully", tickets = ticketList });
+                try
+                {
+                    var result = await _supabaseClient.From<Ticket>().Where(x => x.Id == id).Get();
+                    var ticketList = result.Models.Select(ticket => new TicketViewModel
+                    {
+                        Id = ticket.Id,
+                        Creator_id = ticket.Creator_id,
+                        Role_id = ticket.Role_id,
+                        Product_id = ticket.Product_id,
+                        Priority = ticket.Priority,
+                        Title = ticket.Title,
+                        Desc = ticket.Desc,
+                        Answer = ticket.Answer
+                    }).ToList();
+
+                    if (user.Id != ticketList.First().Creator_id)
+                    {
+                        if (user.Role_id != ticketList.First().Role_id)
+                        {
+                            return Unauthorized(new { message = "You do not have permissions to fetch this ticket" });
+                        }
+                    }
+
+                    return Ok(new { message = "Fetched tickets successfully", tickets = ticketList });
+                }
+                catch (Exception ex)
+                {
+                    return Unauthorized(new { message = "There was an error fetching the ticketlist", error = ex.Message });
+                }
             }
             catch (Exception ex)
             {
-                return Unauthorized(new { message = "There was an error fetching the ticketlist", error = ex});
+                return Unauthorized(new { message = "There was an error trying to validate the token or getting the user", error = ex.Message });
             }
         }
-
-        //TODO - MAKE A METHOD TO FETCH A SINGLE TICKET TO EDIT IT
     }
 
     public class TicketViewModel
