@@ -13,7 +13,8 @@
           type="text"
           id="ticket-title"
           v-model="ticket.title"
-          required placeholder="Title"
+          required
+          placeholder="Title"
         />
 
         <label for="ticket-description">Description:</label>
@@ -21,15 +22,42 @@
           class="description-input"
           id="ticket-description"
           v-model="ticket.description"
-          required placeholder="Describe your problem here"
+          required
+          placeholder="Describe your problem here"
         ></textarea>
+
+        <div class="select-container">
+          <select class="select-box">
+            <option value="" disabled selected>Priority</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+
+          <select class="select-box">
+            <option value="" disabled selected>Supporter</option>
+            <option value="1">Jon</option>
+            <option value="2">Doe</option>
+            <option value="3">Sten</option>
+            <option value="4">Mads</option>
+          </select>
+        </div>
 
         <select class="select-products">
           <option value="" disabled selected>Select the product</option>
-          <option value="fried rice">fried rice</option>
-          <option value="or">or</option>
-          <option value="the">the</option>
-          <option value="egg rolls">egg rolls</option>
+          <option value="1">option 1</option>
+          <option value="2">option 2</option>
+          <option value="3">option 3</option>
+          <option value="4">option 4</option>
+        </select>
+
+        <select class="select-products">
+          <option value="" disabled selected>Select the helped</option>
+          <option value="1">Lisa</option>
+          <option value="2">Marvin</option>
+          <option value="3">Claus</option>
+          <option value="4">Hans</option>
         </select>
 
         <button class="create-ticket" type="submit">Create Ticket</button>
@@ -84,7 +112,7 @@ export default {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -97,8 +125,9 @@ h1 {
 
 .title-input,
 .description-input,
-.select-products {
-  background: var(--color-input-bg,);
+.select-products,
+.select-box {
+  background: var(--color-input-bg);
   color: var(--input-color-text);
   border: 1px solid;
   border-color: var(--color-button);
@@ -108,6 +137,21 @@ h1 {
   margin-bottom: 15px;
 }
 
+.select-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.select-box {
+  width: 48%;
+}
+
+.select-products {
+  margin-top: 10px;
+}
+
+.select-box option,
 .select-products option {
   background-color: var(--color-background);
   color: var(--input-color-text);
