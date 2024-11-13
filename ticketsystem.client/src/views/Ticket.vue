@@ -8,23 +8,11 @@
       <!-- Form to create or edit a ticket -->
       <form @submit.prevent="createOrUpdateTicket">
         <label for="ticket-title">Title:</label>
-        <input
-          class="title-input"
-          type="text"
-          id="ticket-title"
-          v-model="ticket.title"
-          required
-          placeholder="Title"
-        />
+        <input class="title-input" type="text" id="ticket-title" v-model="ticket.title" required placeholder="Title" />
 
         <label for="ticket-description">Description:</label>
-        <textarea
-          class="description-input"
-          id="ticket-description"
-          v-model="ticket.description"
-          required
-          placeholder="Describe your problem here"
-        ></textarea>
+        <textarea class="description-input" id="ticket-description" v-model="ticket.description" required
+          placeholder="Describe your problem here"></textarea>
 
         <div class="select-container">
           <select id="priority" class="select-box" v-model="ticket.priority" required>
@@ -119,12 +107,14 @@ export default {
   methods: {
     async createOrUpdateTicket() {
       const token = supabase.auth.getSession();
-
       if (this.mode === "create") {
-        console.log("Creating ticket:", this.ticket);
-        console.log(token);
-        try {
-        const response = await fetch('https://localhost:7253/Ticket/createTicket', {
+        var url = 'https://localhost:7253/Ticket/createTicket'
+      }
+      else if (this.mode === "edit") {
+        var url = 'https://localhost:7253/Ticket/changeTicket'
+      }
+      try {
+        const response = await fetch(url, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -145,50 +135,37 @@ export default {
           return;
         }
       } catch (error) {
-        console.error('An error occurred during signup:', error);
+        console.error('An error occurred during save:', error);
         alert('An error occurred. Please try again.');
       }
-
-      } else if (this.mode === "edit") {
-        console.log("Updating ticket:", this.ticket);
-        try {
-        const response = await fetch('https://localhost:7253/Ticket/createTicket', {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          },
-          body: JSON.stringify({
-            creator_id: this.ticket.helped,
-            role_id: this.ticket.role_id,
-            product_id: this.ticket.product_id,
-            priority: this.ticket.priority,
-            title: this.ticket.title,
-            desc: this.ticket.description,
-          })
-        });
-
-        if (!response.ok) {
-          alert('An error occurred while saving user data.');
-          return;
-        }
-      } catch (error) {
-        console.error('An error occurred during signup:', error);
-        alert('An error occurred. Please try again.');
-      }
+      if (this.mode === "edit") {
         this.router.push(`/ticket/${this.id}`);
       }
     },
     async fetchTicketDetails() {
-      // Simulate fetching ticket data based on `id`
-      this.ticketDetail = {
-        title: "Login Issue",
-        description: "Unable to login to the system due to an authentication error.",
-        priority: "3",
-        supporter: "2",
-        product: "Product A",
-        helped: "Lisa",
-      };
+      try {
+        const response = await fetch('https://localhost:7253/Ticket/ticket', {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        if (responseData && responseData.products) {
+          this.ticketDetail = responseData.products;
+        } else {
+          console.error("No ticket found in response");
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
 
       // Populate form fields if in "edit" mode
       if (this.mode === "edit") {
