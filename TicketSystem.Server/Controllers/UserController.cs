@@ -27,11 +27,10 @@ namespace TicketSystem.Server.Controllers
 
         // GET
         [HttpGet("userList")]
-        public async Task<IActionResult> UserList()//[FromHeader(Name = "Authorization")] string authHeader)
+        public async Task<IActionResult> UserList([FromHeader(Name = "Authorization")] string authHeader)
         {
             try
             {
-                /*
                 User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
                 if (user == null)
                 {
@@ -41,7 +40,7 @@ namespace TicketSystem.Server.Controllers
                 {
                     return Unauthorized(new { message = "No permission" });
                 }
-                */
+                
                 var result = await _supabaseClient.From<UserData>().Order("username", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
                 var userList = result.Models.Select(user => new UserDataViewModel
                 {
