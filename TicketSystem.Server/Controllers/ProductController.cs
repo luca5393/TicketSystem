@@ -35,7 +35,7 @@ namespace TicketSystem.Server.Controllers
                 Id = product.Id,
                 Name = product.Name,
                 Desc = product.Desc,
-                price = product.Price
+                Price = product.Price
                 // other mappings
             }).ToList();
 
@@ -44,12 +44,19 @@ namespace TicketSystem.Server.Controllers
 
         // GET
         [HttpPost("productSLA")]
-        public async Task<IActionResult> ProductSLAList([FromBody] Product Product)
+        public async Task<IActionResult> ProductSLA([FromBody] Product Product)
         {
             var result = await _supabaseClient.From<SLA>().Where(x => x.Product_id == Product.Id).Get();
-            var SLA = result.Models;
+            var sla = result.Models.Select(sla => new SLAViewModel
+            {
+                Product_Id = sla.Product_id,
+                Uptime = sla.Uptime,
+                Resolution_Time = sla.Resolution_time,
+                Respone_Time = sla.Response_time
+                // other mappings
+            }).ToList();
 
-            return Ok(new { message = "Succes", productSLA = SLA });
+            return Ok(new { message = "Success", sla = sla });
         }
 
         // GET
@@ -57,11 +64,29 @@ namespace TicketSystem.Server.Controllers
         public async Task<IActionResult> ProductQNAList([FromBody] Product Product)
         {
             var result = await _supabaseClient.From<QNA>().Where(x => x.Product_id == Product.Id).Get();
-            var QNAList = result.Models;
+            var qna = result.Models.Select(qna => new QNAViewModel
+            {
+                Id = qna.Id,
+                Product_id = qna.Product_id,
+                Title = qna.Title,
+                Question = qna.Question,
+                Answer = qna.Answer
+            }).ToList();
 
-            return Ok(new { message = "Succes", productQNAList = QNAList });
-        }
+            return Ok(new { message = "Success", qna = qna });
+         }
 
+    }
+
+    public class SLAViewModel
+    {
+        public int Product_Id { get; set; }
+
+        public string Uptime { get; set; }
+
+        public string Resolution_Time { get; set; }
+
+        public string Respone_Time { get; set; }
     }
 
     public class ProductViewModel
@@ -72,7 +97,20 @@ namespace TicketSystem.Server.Controllers
 
         public string Desc { get; set; }
 
-        public int price { get; set; }
+        public int Price { get; set; }
+    }
+
+    public class QNAViewModel
+    {
+        public int Id { get; set; }
+
+        public int Product_id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Question { get; set; }
+
+        public string Answer { get; set; }
     }
 
     [Table("products")]
@@ -104,13 +142,13 @@ namespace TicketSystem.Server.Controllers
         public string Resolution_time { get; set; }
 
         [Column("response_time")]
-        public int Response_time { get; set; }
+        public string Response_time { get; set; }
     }
 
     [Table("qna")]
     public class QNA : BaseModel
     {
-        [PrimaryKey("id", false)]
+        [PrimaryKey("id", true)]
         public int Id { get; set; }
 
         [Column("product_id")]
