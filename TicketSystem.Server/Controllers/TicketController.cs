@@ -32,7 +32,7 @@ namespace TicketSystem.Server.Controllers
             try
             {
                 // Retrieve the user's information
-                User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
                 if (user == null) 
                 {
                     return Unauthorized(new { message = "Could not get user." });
@@ -72,7 +72,7 @@ namespace TicketSystem.Server.Controllers
         public async Task<IActionResult> RemoveTicket([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
             // Retrieve the user's information
-            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
                 return Unauthorized(new { message = "Could not get user." });
@@ -98,7 +98,7 @@ namespace TicketSystem.Server.Controllers
         public async Task<IActionResult> ChangeTickete([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
             // Retrieve the user's information
-            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
                 return Unauthorized(new { message = "Could not get user." });
@@ -128,7 +128,7 @@ namespace TicketSystem.Server.Controllers
         public async Task<IActionResult> TicketToQNA([FromHeader(Name = "Authorization")] string authHeader)
         {
             // Retrieve the user's information
-            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
                 return Unauthorized(new { message = "Could not get user." });
@@ -149,7 +149,7 @@ namespace TicketSystem.Server.Controllers
         public async Task<IActionResult> TicketList([FromHeader(Name = "Authorization")] string authHeader)
         {
             // Retrieve the user's information
-            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
                 return Unauthorized(new { message = "Could not get user." });
