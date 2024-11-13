@@ -40,12 +40,12 @@ export default {
   padding: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+  position: relative;
+  top: 60px;
   align-items: center;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

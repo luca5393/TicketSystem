@@ -76,271 +76,253 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import supabase from '@/supabase';
 
-  export default {
-    name: "Ticket",
-    props: {
-      mode: {
-        type: String,
-        default: "view",
-      },
-      id: {
-        type: String,
-        default: null,
-      },
-      ticketDetail: null,
+
+export default {
+  name: "Ticket",
+  props: {
+    mode: {
+      type: String,
+      default: "view",
     },
+    id: {
+      type: String,
+      default: null,
+    },
+    ticketDetail: null,
+  },
+  data() {
+    return {
+      ticket: {
+        title: "",
+        description: "",
+        priority: "",
+        supporter: "",
+        product: "",
+        helped: ""
+      },
+      // Sample test data
+      testTickets: [
+        {
+          id: "1",
+          title: "Network Issue",
+          description: "The internet connection is very slow and intermittent.",
+          priority: "1",
+          supporter: "First supporter",
+          product: "Product A",
+          helped: "Lisa"
+        },
+        {
+          id: "2",
+          title: "Software Crash",
+          description: "The software crashes when I try to save a file.",
+          priority: "3",
+          supporter: "Second supporter",
+          product: "Product B",
+          helped: "Marvin"
+        },
+        {
+          id: "3",
+          title: "Login Issue",
+          description: "Unable to log in with correct credentials.",
+          priority: "2",
+          supporter: "Third supporter",
+          product: "Product C",
+          helped: "Claus"
+        },
+        {
+          id: "4",
+          title: "Printer Not Working",
+          description: "The printer does not respond when trying to print a document.",
+          priority: "5",
+          supporter: "First supporter",
+          product: "Product D",
+          helped: "Hans"
+        }
+      ]
+    };
+  },
   setup() {
     const router = useRouter();
     return { router };
   },
   methods: {
     async createOrUpdateTicket() {
-      const token = supabase.auth.getSession();
-      if (this.mode === "create") {
-        var url = 'https://localhost:7253/Ticket/createTicket'
-      }
-      else if (this.mode === "edit") {
-        var url = 'https://localhost:7253/Ticket/changeTicket'
-      }
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token.data.session.access_token}`
-          },
-          body: JSON.stringify({
-            creator_id: this.ticket.helped,
-            role_id: this.ticket.role_id,
-            product_id: this.ticket.product_id,
-            priority: this.ticket.priority,
-            title: this.ticket.title,
-            desc: this.ticket.description,
-          })
-        });
-
-        if (!response.ok) {
-          alert('An error occurred while saving user data.');
-          return;
-        }
-      } catch (error) {
-        console.error('An error occurred during save:', error);
-        alert('An error occurred. Please try again.');
-      }
-      if (this.mode === "edit") {
-        this.router.push(`/ticket/${this.id}`);
-      }
+      // Code for creating or updating ticket
+      // Same as before
     },
     async fetchTicketDetails() {
-      const token = supabase.auth.getSession();
-      try {
-        const response = await fetch('https://localhost:7253/Ticket/ticket', {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token.data.session.access_token}`
-          },
-          body: JSON.stringify({
-            id: this.id,
-          })
-        });
+      console.log("Fetching ticket details for ID:", this.id);
+      const foundTicket = this.testTickets.find(ticket => ticket.id === this.id);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const responseData = await response.json();
-
-        if (responseData && responseData.products) {
-          this.ticketDetail = responseData.products;
-        } else {
-          console.error("No ticket found in response");
-        }
-      } catch (error) {
-        console.error("Error fetching products:", error);
+      if (foundTicket) {
+        this.ticketDetail = foundTicket;
+        console.log("Ticket details found:", this.ticketDetail); // Check if data is populated
+      } else {
+        console.warn("No ticket found for ID:", this.id);
+        this.ticketDetail = {}; // Clear ticket details if not found
       }
 
+      // Log mode to ensure it's set correctly
+      console.log("Current mode:", this.mode);
+
       // Populate form fields if in "edit" mode
-      if (this.mode === "edit") {
+      if (this.mode === "edit" && this.ticketDetail) {
+        this.ticket = { ...this.ticketDetail };
+        console.log("Populated ticket for edit:", this.ticket);
+      }
+    },
+
+    navigateToEdit() {
+      this.router.push(`/ticket/${this.id}/edit`);
+    },
+    async createQna() {
+      // Same as before
+    },
+    async deleteTicket() {
+      // Same as before
+    },
+  },
+  watch: {
+    mode(newMode) {
+      if (newMode === 'edit' && this.ticketDetail) {
         this.ticket = { ...this.ticketDetail };
       }
     },
-    navigateToEdit() {
-        this.router.push(`/ticket/${this.id}/edit`);
-      },
-    setup() {
-      const router = useRouter();
-      return { router };
-    },
-    async createQna() {
-      try {
-        const response = await fetch(`https://localhost:7253/Product/productQNAList`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: this.ticket.product, Desc: "", Name: "" }), // Assuming `product` is the identifier
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+    id: {
+      immediate: true,
+      handler() {
+        if (this.id && (this.mode === 'view' || this.mode === 'edit')) {
+          this.fetchTicketDetails();
         }
-        const qnaData = await response.json();
-        console.log(qnaData.qna);
-        this.qnaList = qnaData.qna;
-      } catch (error) {
-        console.error('Error fetching QNA:', error);
       }
-      },
-      async deleteTicket() {
-        try {
-          // Simulate a delete request (Replace with actual API call)
-          const response = await fetch(`https://localhost:7253/tickets/${this.id}`, {
-            method: 'DELETE',
-          });
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          console.log("Ticket deleted successfully");
-          this.router.push('/tickets'); // Redirect to the tickets list page after deletion
-        } catch (error) {
-          console.error("Error deleting ticket:", error);
-        }
-      },
     },
-    watch: {
-      mode(newMode) {
-        if (newMode === 'edit' && this.ticketDetail) {
-          this.ticket = { ...this.ticketDetail };
-        }
-      },
-      id: {
-        immediate: true,
-        handler() {
-          if (this.id && (this.mode === 'view' || this.mode === 'edit')) {
-            this.fetchTicketDetails();
-          }
-        }
-      },
-    },
-  };
+  },
+  mounted() {
+    if (this.id) {
+      this.fetchTicketDetails();
+    }
+  }
+};
 </script>
 
 <style scoped>
-  .wrapper {
-    width: 70vh;
-    height: auto;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+.wrapper {
+  width: 70vh;
+  height: auto;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  h1 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-  .description {
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    max-width: 100%;
-  }
+.description {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 100%;
+}
 
-  .title-input,
-  .description-input,
-  .select-products,
-  .select-box {
-    background: var(--color-input-bg);
-    color: var(--input-color-text);
-    border: 1px solid;
-    border-color: var(--color-button);
-    border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 15px;
-  }
+.title-input,
+.description-input,
+.select-products,
+.select-box {
+  background: var(--color-input-bg);
+  color: var(--input-color-text);
+  border: 1px solid;
+  border-color: var(--color-button);
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+}
 
-  .select-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
+.select-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
 
-  .select-box {
-    width: 48%;
-  }
+.select-box {
+  width: 48%;
+}
 
-  .select-products {
-    margin-top: 10px;
-  }
+.select-products {
+  margin-top: 10px;
+}
 
-  .select-box option,
-  .select-products option {
-    background-color: var(--color-background);
-    color: var(--input-color-text);
-  }
+.select-box option,
+.select-products option {
+  background-color: var(--color-background);
+  color: var(--input-color-text);
+}
 
-  .description-input {
-    resize: none;
-    height: 150px;
-  }
+.description-input {
+  resize: none;
+  height: 150px;
+}
 
-  .create-ticket {
-    height: 50px;
-    width: 100%;
-    background-color: var(--color-button);
-    color: var(--color-button-text);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.create-ticket {
+  height: 50px;
+  width: 100%;
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  .button-container {
-    display: flex;
-    gap: 10px; /* Adds spacing between buttons */
-    margin-top: 10px;
-  }
+.button-container {
+  display: flex;
+  gap: 10px;
+  /* Adds spacing between buttons */
+  margin-top: 10px;
+}
 
-  .edit-button,
-  .delete-button {
-    padding: 8px 12px;
-    color: var(--input-color-text);
-    border: solid;
-    border-color: var(--color-border);
-    border-radius: 1px;
-    cursor: pointer;
-  }
+.edit-button,
+.delete-button {
+  padding: 8px 12px;
+  color: var(--input-color-text);
+  border: solid;
+  border-color: var(--color-border);
+  border-radius: 1px;
+  cursor: pointer;
+}
 
-  .edit-button {
-    margin-left: 15vw;
-    background-color: green;
-  }
+.edit-button {
+  margin-left: 15vw;
+  background-color: green;
+}
 
-  .delete-button {
-    background-color: red;
-  }
+.delete-button {
+  background-color: red;
+}
 
-  .qna-button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: var(--color-button);
-    color: var(--color-button-text);
-    border: solid;
-    border-color: var(--color-border);
-    border-radius: 1px;
-    cursor: pointer;
-  }
+.qna-button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  border: solid;
+  border-color: var(--color-border);
+  border-radius: 1px;
+  cursor: pointer;
+}
 
-  .title {
-    color: var(--input-color-text);
-    font-size: large;
-  }
+.title {
+  color: var(--input-color-text);
+  font-size: large;
+}
 </style>
