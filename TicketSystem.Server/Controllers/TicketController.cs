@@ -196,7 +196,7 @@ namespace TicketSystem.Server.Controllers
                     try
                     {
                         var result = await _supabaseClient.From<Ticket>().Where(x => x.Role_id == user.Role_id).Order("priority", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
-                        var ticketList = result.Models.Select(ticket => new Ticket
+                        var ticketList = result.Models.Select(ticket => new TicketViewModel
                         {
                             Id = ticket.Id,
                             Creator_id = ticket.Creator_id,
@@ -238,7 +238,7 @@ namespace TicketSystem.Server.Controllers
                 try
                 {
                     var result = await _supabaseClient.From<Ticket>().Where(x => x.Creator_id == user.Id).Order("created_at", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
-                    var ticketList = result.Models.Select(ticket => new Ticket
+                    var ticketList = result.Models.Select(ticket => new TicketViewModel
                     {
                         Id = ticket.Id,
                         Creator_id = ticket.Creator_id,

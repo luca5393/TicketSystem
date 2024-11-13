@@ -22,8 +22,7 @@
         <router-link :to="{ name: 'TicketView', params: { id: item.id } }">
           <div class="ticket-item">
             <span>
-              {{ item.name }} - {{ item.product }} - Priority: {{ item.priority }} - Date:
-              {{ new Date(item.time).toLocaleString() }} | Status: {{ item.status }}
+              {{ item.title }} - {{ item.product_id }} - Priority: {{ item.priority }} | Status: {{ item.status }}
             </span>
           </div>
         </router-link>
@@ -59,14 +58,14 @@ export default {
           },
         });
 
-        if (!response.ok) {
+        if (!userresponse.ok) {
           throw new Error(`HTTP error! Status: ${userresponse.status}`);
         }
 
         const userResponseData = await userresponse.json();
 
-        if (userResponseData && userResponseData.products) {
-          this.items = userResponseData.products;
+        if (userResponseData && userResponseData.tickets) {
+          this.items = userResponseData.tickets;
         } else {
           console.error("No tickets found in response");
         }
@@ -83,15 +82,18 @@ export default {
           },
         });
 
-        if (!response.ok) {
+        if (!roleResponse.ok) {
           throw new Error(`HTTP error! Status: ${roleResponse.status}`);
         }
 
         const roleResponseData = await roleResponse.json();
 
-        if (roleResponseData && roleResponseData.products) {
-          this.items += roleResponseData.products;
-          removeDuplicates(this.items);
+        console.log(roleResponseData);
+        if (roleResponseData && roleResponseData.tickets) {
+          this.items += roleResponseData.tickets;
+          console.log(this.items);
+          //removeDuplicates(this.items);
+          console.log(this.items);
         } else {
           console.error("No tickets found in response");
         }
@@ -99,17 +101,10 @@ export default {
         console.error("Error fetching tickets:", error);
       }
     },
-    removeDuplicates(items) {
-      return items.filter((value, index, self) =>
-        index === self.findIndex((t) => (
-          t.id === value.id
-        ))
-  );
-}
   },
   computed: {
     uniqueProducts() {
-      const products = new Set(this.items.map(item => item.product));
+      const products = new Set(this.items.map(item => item.product_id));
       return Array.from(products);
     },
     filteredItems() {

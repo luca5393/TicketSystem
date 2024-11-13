@@ -27,7 +27,7 @@ public class User : BaseModel
     [PrimaryKey("id", false)]
     public string Id { get; set; }
 
-    [Column("role_id")]
+    [Column("role")]
     public int Role_id { get; set; }
 
     [Column("username")]

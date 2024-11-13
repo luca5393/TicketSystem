@@ -58,11 +58,10 @@
       <!-- Ticket Detail View -->
       <h2>Ticket Detail</h2>
       <p><strong class="title">Title:</strong> {{ ticketDetail.title }}</p>
-      <p class="description"><strong class="title">Description:</strong> {{ ticketDetail.description }}</p>
+      <p class="description"><strong class="title">Description:</strong> {{ ticketDetail.desc }}</p>
       <p><strong class="title">Priority:</strong> {{ ticketDetail.priority }}</p>
-      <p><strong class="title">Assigned Supporter:</strong> {{ ticketDetail.supporter }}</p>
-      <p><strong class="title">Product:</strong> {{ ticketDetail.product }}</p>
-      <p><strong class="title">Helped Person:</strong> {{ ticketDetail.helped }}</p>
+      <p><strong class="title">Product:</strong> {{ ticketDetail.product_id }}</p>
+      <p><strong class="title">Helped Person:</strong> {{ ticketDetail.creator_id }}</p>
 
       <!-- Button Container for Edit and Delete Buttons -->
       <div class="button-container">
@@ -97,7 +96,7 @@ import supabase from '@/supabase';
   },
   methods: {
     async createOrUpdateTicket() {
-      const token = supabase.auth.getSession();
+      const token = await supabase.auth.getSession();
       if (this.mode === "create") {
         var url = 'https://localhost:7253/Ticket/createTicket'
       }
@@ -120,7 +119,7 @@ import supabase from '@/supabase';
             desc: this.ticket.description,
           })
         });
-
+        console.log(response);
         if (!response.ok) {
           alert('An error occurred while saving user data.');
           return;
@@ -134,27 +133,23 @@ import supabase from '@/supabase';
       }
     },
     async fetchTicketDetails() {
-      const token = supabase.auth.getSession();
+      const token = await supabase.auth.getSession();
       try {
-        const response = await fetch('https://localhost:7253/Ticket/ticket', {
-          method: 'POST',
+        const response = await fetch('https://localhost:7253/Ticket/ticket?id='+this.id, {
+          method: 'GET',
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token.data.session.access_token}`
           },
-          body: JSON.stringify({
-            id: this.id,
-          })
         });
-
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const responseData = await response.json();
-
-        if (responseData && responseData.products) {
-          this.ticketDetail = responseData.products;
+        console.log(responseData);
+        if (responseData && responseData.tickets) {
+          this.ticketDetail = responseData.tickets[0];
         } else {
           console.error("No ticket found in response");
         }
@@ -170,16 +165,16 @@ import supabase from '@/supabase';
     navigateToEdit() {
         this.router.push(`/ticket/${this.id}/edit`);
       },
-    setup() {
-      const router = useRouter();
-      return { router };
-    },
     async createQna() {
+      const token = await supabase.auth.getSession();
       try {
         const response = await fetch(`https://localhost:7253/Product/productQNAList`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: this.ticket.product, Desc: "", Name: "" }), // Assuming `product` is the identifier
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token.data.session.access_token}`
+          },
+          body: JSON.stringify({ id: this.ticket.product_id, Desc: "", Name: "" }),
         });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -192,16 +187,21 @@ import supabase from '@/supabase';
       }
       },
       async deleteTicket() {
+        const token = await supabase.auth.getSession();
         try {
-          // Simulate a delete request (Replace with actual API call)
-          const response = await fetch(`https://localhost:7253/tickets/${this.id}`, {
-            method: 'DELETE',
-          });
+          const response = await fetch(`https://localhost:7253/Ticket/removeTicket`, {
+            method: 'POST',
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token.data.session.access_token}`
+          },
+          body: JSON.stringify({ id: this.ticket.id, Desc: "", Name: "" }),
+        });
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           console.log("Ticket deleted successfully");
-          this.router.push('/tickets'); // Redirect to the tickets list page after deletion
+          this.router.push('/tickets');
         } catch (error) {
           console.error("Error deleting ticket:", error);
         }
