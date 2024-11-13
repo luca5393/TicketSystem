@@ -1,55 +1,59 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div class="wrapper">
-        <form @submit.prevent="submitForm">
-            <h1>Login</h1>
-            <div class="input-box">
-                <input v-model="email" type="email" placeholder="Email" required />
-                <i class="bx bxs-envelope"></i>
-            </div>
-            <div class="input-box">
-                <input v-model="password" type="password" placeholder="Password" required />
-                <i class="bx bxs-lock-alt"></i>
-            </div>
-            <button type="submit" class="btn">Login</button>
-        </form>
-    </div>
+  <div class="wrapper">
+    <form @submit.prevent="submitForm">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input v-model="email" type="email" placeholder="Email" required />
+        <i class="bx bxs-envelope"></i>
+      </div>
+      <div class="input-box">
+        <input v-model="password" type="password" placeholder="Password" required />
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+      <div class="register-link">
+        <p>Don't have an account? <a href="Signup">Register</a></p>
+        <a href="/">Go to homepage</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import supabase from '@/supabase';
-import { useRouter } from 'vue-router';
+  import { ref } from 'vue';
+  import supabase from '@/supabase';
+  import { useRouter } from 'vue-router';
 
-const email = ref('');
-const password = ref('');
-const router = useRouter();
+  const email = ref('');
+  const password = ref('');
+  const router = useRouter();
 
-const submitForm = async () => {
+  const submitForm = async () => {
     try {
-        const { data: { session }, error } = await supabase.auth.signInWithPassword({
-            email: email.value,
-            password: password.value,
-        });
+      const { data: { session }, error } = await supabase.auth.signInWithPassword({
+        email: email.value,
+        password: password.value,
+      });
 
-        // If there is an error, show the message
-        if (error) {
-            alert(error.message);
-            return;
-        }
+      // If there is an error, show the message
+      if (error) {
+        alert(error.message);
+        return;
+      }
 
-        // Redirect user to home page after successful login
-        router.push({ name: 'Home' });
+      // Redirect user to home page after successful login
+      router.push({ name: 'Home' });
 
     } catch (error) {
-        console.error('An error occurred during login:', error);
-        alert('An error occurred. Please try again.');
+      console.error('An error occurred during login:', error);
+      alert('An error occurred. Please try again.');
     }
   };
-  </script>
+</script>
 
 
-  <style scoped>
+<style scoped>
   * {
     margin: 0;
     padding: 0;
@@ -76,18 +80,17 @@ const submitForm = async () => {
   }
 
 
-  .wrapper h1 {
-    font-size: 36px;
-    text-align: center;
-  }
+    .wrapper h1 {
+      font-size: 36px;
+      text-align: center;
+    }
 
-  .wrapper .input-box {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 30px 0;
-
-  }
+    .wrapper .input-box {
+      position: relative;
+      width: 100%;
+      height: 50px;
+      margin: 30px 0;
+    }
 
   .input-box input {
     width: 100%;
@@ -102,9 +105,9 @@ const submitForm = async () => {
     color: var(--input-color-text);
   }
 
-  .input-box input::placeholder {
-    color: var(--color-placeholder);
-  }
+    .input-box input::placeholder {
+      color: var(--color-placeholder);
+    }
 
   .input-box i {
     position: absolute;
@@ -130,9 +133,9 @@ const submitForm = async () => {
     text-decoration: none;
   }
 
-  .remember-forgot a:hover {
-    text-decoration: underline;
-  }
+    .remember-forgot a:hover {
+      text-decoration: underline;
+    }
 
   .wrapper .btn {
     width: 100%;
@@ -160,7 +163,7 @@ const submitForm = async () => {
     font-weight: 600;
   }
 
-  .register-link p a:hover {
-    text-decoration: underline;
-  }
-  </style>
+    .register-link p a:hover {
+      text-decoration: underline;
+    }
+</style>
