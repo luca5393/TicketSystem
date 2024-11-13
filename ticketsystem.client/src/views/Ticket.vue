@@ -135,13 +135,17 @@ import supabase from '@/supabase';
       }
     },
     async fetchTicketDetails() {
+      const token = supabase.auth.getSession();
       try {
         const response = await fetch('https://localhost:7253/Ticket/ticket', {
-          method: "GET",
+          method: 'POST',
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
           },
+          body: JSON.stringify({
+            id: this.id,
+          })
         });
 
         if (!response.ok) {

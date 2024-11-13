@@ -60,7 +60,7 @@ export default {
   },
   data() {
     return {
-      uptime: "99.9%",
+      uptime: "",
       slaMetrics: [],
       slaTarget: "",
       qnaList: [],
