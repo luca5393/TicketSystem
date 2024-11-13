@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Supabase;
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +21,7 @@ namespace TicketSystem.Server.Controllers
         private readonly string _supabaseJwtSecret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkcnp5bWhndm9pbmJucm9tYnVqIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczMDQ0NTgxMCwiZXhwIjoyMDQ2MDIxODEwfQ.X0xb6y_oVhXoHQmDHBbQfOnJVFSGt2m3sNmFzrwr0F8";
 
         private Supabase.Client _supabaseClient = new SupabaseConnector().GetSupabaseClient();
-
+         
         // POST api/login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
@@ -48,6 +51,24 @@ namespace TicketSystem.Server.Controllers
             }
         }
 
+        [HttpPost("signup")]
+        public async Task<IActionResult> Signup([FromBody] User user)
+        {
+            if (user == null || string.IsNullOrEmpty(user.id) || string.IsNullOrEmpty(user.username))
+            {
+                return BadRequest(new { message = "Invalid user data." });
+            }
+            var newUser = new User
+            {
+                id = user.id,
+                role = 1,
+                username = user.username
+            };
+
+            await _supabaseClient.From<User>().Insert(user);
+            return Ok(new { message = "User created successfully", userId = user.id });
+        }
+
         // GET api/user
         [HttpGet("user")]
         public async Task<IActionResult> GetUserData([FromHeader(Name = "Authorization")] string authHeader)
@@ -74,10 +95,24 @@ namespace TicketSystem.Server.Controllers
             }
 
             return Ok(new { message = "Authenticated user", userEmail = user.Email });
+
         }
 
-        // POST api/user/data
-        [HttpPost("user/data")]
+        [Table("users")]
+        public class User : BaseModel
+        {
+            [PrimaryKey("id", false)]
+            public string id { get; set; }
+
+            [Column("role")]
+            public int role { get; set; }
+
+            [Column("username")]
+            public string username { get; set; }
+        }
+
+    // POST api/user/data
+    [HttpPost("user/data")]
         public async Task<IActionResult> PostUserData([FromHeader(Name = "Authorization")] string authHeader)
         {
             if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
