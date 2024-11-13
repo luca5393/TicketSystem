@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj": {}
+    "C:\\Users\\lucas\\OneDrive\\Dokumenter\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj": {
+    "C:\\Users\\lucas\\OneDrive\\Dokumenter\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
+        "projectUniqueName": "C:\\Users\\lucas\\OneDrive\\Dokumenter\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
         "projectName": "TicketSystem.Server",
-        "projectPath": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
-        "packagesPath": "C:\\Users\\lolga\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\obj\\",
+        "projectPath": "C:\\Users\\lucas\\OneDrive\\Dokumenter\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
+        "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lucas\\OneDrive\\Dokumenter\\GitHub\\TicketSystem\\TicketSystem.Server\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\lolga\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

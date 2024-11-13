@@ -2,3 +2,4 @@ C:\Users\HFGF\source\repos\TicketSystem\ticketsystem.client\obj\Debug\ticketsyst
 C:\Users\HFGF\Documents\GitHub\TicketSystem\ticketsystem.client\obj\Debug\ticketsystem.client.esproj.CoreCompileInputs.cache
 C:\Users\marcu\Documents\GitHub\TicketSystem\ticketsystem.client\obj\Debug\ticketsystem.client.esproj.CoreCompileInputs.cache
 C:\Users\lolga\Documents\GitHub\TicketSystem\ticketsystem.client\obj\Debug\ticketsystem.client.esproj.CoreCompileInputs.cache
+C:\Users\lucas\OneDrive\Dokumenter\GitHub\TicketSystem\ticketsystem.client\obj\Debug\ticketsystem.client.esproj.CoreCompileInputs.cache
