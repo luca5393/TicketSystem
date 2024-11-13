@@ -4,16 +4,8 @@
       <li v-for="item in items" :key="item.id" class="product-item">
         <span class="product-name">{{ item.name }}</span>
         <div class="buttons">
-          <router-link
-            :to="{ name: 'ProductSla', params: { id: item.id } }"
-            class="btn sla"
-            >SLA</router-link
-          >
-          <router-link
-            :to="{ name: 'ProductQna', params: { id: item.id } }"
-            class="btn qna"
-            >QNA</router-link
-          >
+          <router-link :to="{ name: 'ProductSla', params: { id: item.id } }" class="btn sla">SLA</router-link>
+          <router-link :to="{ name: 'ProductQna', params: { id: item.id } }" class="btn qna">QNA</router-link>
         </div>
       </li>
     </ul>
@@ -28,7 +20,7 @@ export default {
   name: "ProductList",
   data() {
     return {
-      items: [], // Array to store products fetched from the API
+      items: [],
     };
   },
   mounted() {
@@ -37,25 +29,27 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        // Replace 'your-api-url/products' with the actual API endpoint
-        const response = await fetch(
-          'http://localhost:7253/Product/productList',
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        console.log(response);
-        // Check if response contains products data
-        if (response.data && response.data.products) {
-          this.items = response.data.products;
+        const response = await fetch('https://localhost:7253/Product/productList', {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        if (responseData && responseData.products) {
+          this.items = responseData.products;
         } else {
           console.error("No products found in response");
         }
       } catch (error) {
         console.error("Error fetching products:", error);
       }
-    },
+    }
+
   },
 };
 </script>
