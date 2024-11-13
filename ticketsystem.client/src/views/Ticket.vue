@@ -29,6 +29,7 @@
         <div class="select-container">
           <select class="select-box">
             <option value="" disabled selected>Priority</option>
+            <option value="5">5</option>
             <option value="4">4</option>
             <option value="3">3</option>
             <option value="2">2</option>
@@ -37,10 +38,9 @@
 
           <select class="select-box">
             <option value="" disabled selected>Supporter</option>
-            <option value="1">Jon</option>
-            <option value="2">Doe</option>
-            <option value="3">Sten</option>
-            <option value="4">Mads</option>
+            <option value="1">First supporter</option>
+            <option value="2">Second supporter</option>
+            <option value="3">Third supporter</option>
           </select>
         </div>
 
