@@ -13,9 +13,11 @@ public class Validator
     private Supabase.Client _supabaseClient = new SupabaseConnector().GetSupabaseClient();
 
     // Method to validate token and retrieve user
-    public User validateTokenAndGetUser(string token)
+    public async Task<User> validateTokenAndGetUser(string token)
     {
-        return null;
+        Supabase.Gotrue.User user = await _supabaseClient.AdminAuth(_supabaseJwtSecret).GetUser(token);
+        var result = await _supabaseClient.From<User>().Where(x => x.Id == user.Id).Get();
+        return result.Models[0];
     }
 }
 
