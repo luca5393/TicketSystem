@@ -60,7 +60,7 @@ namespace TicketSystem.Server.Controllers
 
     public class UserDataViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Username { get; set; }
     }
 
@@ -68,7 +68,7 @@ namespace TicketSystem.Server.Controllers
     public class UserData : BaseModel
     {
         [PrimaryKey("id", false)]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Column("username")]
         public string Username { get; set; }

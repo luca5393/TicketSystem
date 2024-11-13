@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\UserController.cs",
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\UserController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAAEYAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEMAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-13T17:13:17.566Z",
               "EditorCaption": ""
@@ -75,8 +75,7 @@
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\TicketController.cs",
               "ViewState": "AgIAADwBAAAAAAAAAAAAAEgBAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T10:19:35.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-12T10:19:35.781Z"
             },
             {
               "$type": "Document",
@@ -88,8 +87,7 @@
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\ProductController.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAAABwAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T08:27:34.356Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-13T08:27:34.356Z"
             },
             {
               "$type": "Document",
