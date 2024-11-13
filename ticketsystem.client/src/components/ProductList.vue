@@ -26,6 +26,7 @@ export default {
   mounted() {
     this.fetchProducts();
   },
+  
   methods: {
     async fetchProducts() {
       try {
