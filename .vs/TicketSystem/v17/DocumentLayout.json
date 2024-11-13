@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\components\\productlist.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\components\\productlist.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\components\\header.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\components\\header.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -35,31 +39,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ProductList.vue",
+              "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\ProductList.vue",
+              "RelativeDocumentMoniker": "ticketsystem.client\\src\\components\\ProductList.vue",
+              "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\ProductList.vue",
+              "RelativeToolTip": "ticketsystem.client\\src\\components\\ProductList.vue",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAACAAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-11-13T12:25:12.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Header.vue",
               "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\Header.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\components\\Header.vue",
               "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\Header.vue",
               "RelativeToolTip": "ticketsystem.client\\src\\components\\Header.vue",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
               "WhenOpened": "2024-11-13T11:45:56.869Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Login.vue",
               "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Login.vue",
               "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
               "RelativeToolTip": "ticketsystem.client\\src\\views\\Login.vue",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAAC0AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-11-12T07:25:06.638Z"
+              "WhenOpened": "2024-11-12T07:25:06.638Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Signup.vue",
               "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Signup.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Signup.vue",
