@@ -2,18 +2,19 @@
   <AppHeader />
 
   <div class="wrapper">
-    <h1>{{ mode === "create" ? "Create Ticket" : "Ticket Details" }}</h1>
+    <h1>{{ mode === "create" ? "Create Ticket" : mode === "edit" ? "Edit Ticket" : "Ticket Details" }}</h1>
 
-    <div v-if="mode === 'create'">
-      <!-- Form to create a ticket -->
-      <form @submit.prevent="createTicket">
+    <div v-if="mode === 'create' || mode === 'edit'">
+      <!-- Form to create or edit a ticket -->
+      <form @submit.prevent="createOrUpdateTicket">
         <label for="ticket-title">Title:</label>
         <input
           class="title-input"
           type="text"
           id="ticket-title"
           v-model="ticket.title"
-          required placeholder="Title"
+          required
+          placeholder="Title"
         />
 
         <label for="ticket-description">Description:</label>
@@ -21,28 +22,69 @@
           class="description-input"
           id="ticket-description"
           v-model="ticket.description"
-          required placeholder="Describe your problem here"
+          required
+          placeholder="Describe your problem here"
         ></textarea>
 
-        <select class="select-products">
-          <option value="" disabled selected>Select the product</option>
-          <option value="fried rice">fried rice</option>
-          <option value="or">or</option>
-          <option value="the">the</option>
-          <option value="egg rolls">egg rolls</option>
+        <div class="select-container">
+          <select id="priority" class="select-box" v-model="ticket.priority" required>
+            <option value="" disabled>Select Priority</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+
+          <select id="supporter" class="select-box" v-model="ticket.supporter" required>
+            <option value="" disabled>Select Supporter</option>
+            <option value="1">First supporter</option>
+            <option value="2">Second supporter</option>
+            <option value="3">Third supporter</option>
+          </select>
+        </div>
+
+        <select id="product" class="select-products" v-model="ticket.product" required>
+          <option value="" disabled>Select the product</option>
+          <option value="Product A">Product A</option>
+          <option value="Product B">Product B</option>
+          <option value="Product C">Product C</option>
+          <option value="Product D">Product D</option>
         </select>
 
-        <button class="create-ticket" type="submit">Create Ticket</button>
+        <select id="helped" class="select-products" v-model="ticket.helped" required>
+          <option value="" disabled>Select the helped person</option>
+          <option value="Lisa">Lisa</option>
+          <option value="Marvin">Marvin</option>
+          <option value="Claus">Claus</option>
+          <option value="Hans">Hans</option>
+        </select>
+
+        <button class="create-ticket" type="submit">
+          {{ mode === 'create' ? 'Create Ticket' : 'Update Ticket' }}
+        </button>
       </form>
     </div>
 
     <div v-else>
-      <p>Viewing ticket with ID: {{ id }}</p>
+      <!-- Ticket Detail View -->
+      <h2>Ticket Detail</h2>
+      <p><strong>Title:</strong> {{ ticketDetail.title }}</p>
+      <p class="description"><strong>Description:</strong> {{ ticketDetail.description }}</p>
+      <p><strong>Priority:</strong> {{ ticketDetail.priority }}</p>
+      <p><strong>Assigned Supporter:</strong> {{ ticketDetail.supporter }}</p>
+      <p><strong>Product:</strong> {{ ticketDetail.product }}</p>
+      <p><strong>Helped Person:</strong> {{ ticketDetail.helped }}</p>
+
+      <!-- Edit and Delete Buttons -->
+      <button @click="navigateToEdit" class="edit-button">Edit</button>
     </div>
   </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Ticket",
@@ -61,12 +103,66 @@ export default {
       ticket: {
         title: "",
         description: "",
+        priority: "",
+        supporter: "",
+        product: "",
+        helped: "",
       },
+      ticketDetail: null,
     };
   },
+  setup() {
+    const router = useRouter();
+    return { router };
+  },
   methods: {
-    createTicket() {
-      console.log("Creating ticket:", this.ticket);
+    async createOrUpdateTicket() {
+      if (this.mode === "create") {
+        console.log("Creating ticket:", this.ticket);
+        // Logic to save the new ticket
+      } else if (this.mode === "edit") {
+        console.log("Updating ticket:", this.ticket);
+        // Update ticket logic here
+        this.router.push(`/ticket/${this.id}`);
+      }
+    },
+    async fetchTicketDetails() {
+      // Simulate fetching ticket data based on `id`
+      this.ticketDetail = {
+        title: "Login Issue",
+        description: "Unable to login to the system due to an authentication error.",
+        priority: "3",
+        supporter: "2",
+        product: "Product A",
+        helped: "Lisa",
+      };
+
+      // Populate form fields if in "edit" mode
+      if (this.mode === "edit") {
+        this.ticket = { ...this.ticketDetail };
+      }
+    },
+    navigateToEdit() {
+      this.router.push(`/ticket/${this.id}/edit`);
+    },
+    deleteTicket() {
+      console.log("Deleting ticket with ID:", this.id);
+      // Logic to delete the ticket
+    },
+  },
+  watch: {
+    mode(newMode) {
+      if (newMode === 'edit' && this.ticketDetail) {
+        this.ticket = { ...this.ticketDetail };
+      }
+    },
+    id: {
+      immediate: true,
+      handler() {
+        if (this.id && (this.mode === 'view' || this.mode === 'edit')) {
+          this.fetchTicketDetails();
+        }
+      }
     },
   },
 };
@@ -84,7 +180,7 @@ export default {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -95,10 +191,17 @@ h1 {
   margin-bottom: 20px;
 }
 
+.description {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 100%;
+}
+
 .title-input,
 .description-input,
-.select-products {
-  background: var(--color-input-bg,);
+.select-products,
+.select-box {
+  background: var(--color-input-bg);
   color: var(--input-color-text);
   border: 1px solid;
   border-color: var(--color-button);
@@ -108,9 +211,24 @@ h1 {
   margin-bottom: 15px;
 }
 
+.select-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.select-box {
+  width: 48%;
+}
+
+.select-products {
+  margin-top: 10px;
+}
+
+.select-box option,
 .select-products option {
-  background-color: var(--color-background); /* Matches background */
-  color: var(--input-color-text); /* Matches text color */
+  background-color: var(--color-background);
+  color: var(--input-color-text);
 }
 
 .description-input {
@@ -128,50 +246,20 @@ h1 {
   cursor: pointer;
 }
 
-.sort-container {
-  position: absolute;
-  top: 10%;
-  right: 5%;
-}
-
-.sort-button {
-  padding: 10px 20px;
-  background-color: var(--color-button);
-  color: var(--color-button-text);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.ticket-display-container {
-  position: absolute;
-  top: 20%;
-  right: 5%;
-  width: 300px;
-  max-height: 70vh;
-  overflow-y: auto;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  color: white;
-}
-
-.ticket-display {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 10px 0;
-  word-wrap: break-word;
-  white-space: normal;
-  overflow-wrap: break-word;
-}
-
-.delete-button {
+.edit-button {
   margin-top: 10px;
-  padding: 5px 10px;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  padding: 8px 12px;
+  background-color: green;
+  color: var(--input-color-text);
+  border: solid;
+  border-color: var(--color-border);
+  border-radius: 1px;
   cursor: pointer;
+  margin-left: 20vw;
+}
+
+.title {
+  color: var(--input-color-text);
+  font-size: large;
 }
 </style>
