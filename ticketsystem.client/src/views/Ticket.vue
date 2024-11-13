@@ -109,7 +109,7 @@ import supabase from '@/supabase';
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token.data.session.access_token}`
           },
           body: JSON.stringify({
             creator_id: this.ticket.helped,
@@ -140,7 +140,7 @@ import supabase from '@/supabase';
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token.data.session.access_token}`
           },
           body: JSON.stringify({
             id: this.id,
@@ -167,56 +167,29 @@ import supabase from '@/supabase';
         this.ticket = { ...this.ticketDetail };
       }
     },
+    navigateToEdit() {
+        this.router.push(`/ticket/${this.id}/edit`);
+      },
     setup() {
       const router = useRouter();
       return { router };
     },
-    methods: {
-      async createOrUpdateTicket() {
-        if (this.mode === "create") {
-          console.log("Creating ticket:", this.ticket);
-          // Logic to save the new ticket
-        } else if (this.mode === "edit") {
-          console.log("Updating ticket:", this.ticket);
-          // Update ticket logic here
-          this.router.push(`/ticket/${this.id}`);
+    async createQna() {
+      try {
+        const response = await fetch(`https://localhost:7253/Product/productQNAList`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: this.ticket.product, Desc: "", Name: "" }), // Assuming `product` is the identifier
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
-      },
-      async fetchTicketDetails() {
-        // Simulate fetching ticket data based on `id`
-        this.ticketDetail = {
-          title: "Login Issue",
-          description: "Unable to login to the system due to an authentication error.",
-          priority: "3",
-          supporter: "2",
-          product: "Product A",
-          helped: "Lisa",
-        };
-
-        // Populate form fields if in "edit" mode
-        if (this.mode === "edit") {
-          this.ticket = { ...this.ticketDetail };
-        }
-      },
-      navigateToEdit() {
-        this.router.push(`/ticket/${this.id}/edit`);
-      },
-      async createQna() {
-        try {
-          const response = await fetch(`https://localhost:7253/Product/productQNAList`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: this.ticket.product, Desc: "", Name: "" }), // Assuming `product` is the identifier
-          });
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          const qnaData = await response.json();
-          console.log(qnaData.qna);
-          this.qnaList = qnaData.qna;
-        } catch (error) {
-          console.error('Error fetching QNA:', error);
-        }
+        const qnaData = await response.json();
+        console.log(qnaData.qna);
+        this.qnaList = qnaData.qna;
+      } catch (error) {
+        console.error('Error fetching QNA:', error);
+      }
       },
       async deleteTicket() {
         try {
@@ -249,8 +222,7 @@ import supabase from '@/supabase';
         }
       },
     },
-  },
-}
+  };
 </script>
 
 <style scoped>
