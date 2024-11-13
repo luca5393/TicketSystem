@@ -50,37 +50,62 @@ export default {
   methods: {
     async fetchTicketList() {
       const token = await supabase.auth.getSession();
-      console.log("TOKEN ADHBWYDHBA:  "+token);
       try {
-        const response = await fetch('https://localhost:7253/Product/productList', {
+        const userresponse = await fetch('https://localhost:7253/Ticket/userTicketList', {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token.access_token}`
+            "Authorization": `Bearer ${token.data.session.access_token}`
           },
-          body: JSON.stringify({
-            username: this.username,
-            email: this.email,
-            password: this.password,
-            role: 0,
-          })
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error(`HTTP error! Status: ${userresponse.status}`);
         }
 
-        const responseData = await response.json();
+        const userResponseData = await userresponse.json();
 
-        if (responseData && responseData.products) {
-          this.items = responseData.products;
+        if (userResponseData && userResponseData.products) {
+          this.items = userResponseData.products;
         } else {
           console.error("No tickets found in response");
         }
       } catch (error) {
         console.error("Error fetching tickets:", error);
       }
-    }
+
+      try {
+        const roleResponse = await fetch('https://localhost:7253/Ticket/roleTicketList', {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token.data.session.access_token}`
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${roleResponse.status}`);
+        }
+
+        const roleResponseData = await roleResponse.json();
+
+        if (roleResponseData && roleResponseData.products) {
+          this.items += roleResponseData.products;
+          removeDuplicates(this.items);
+        } else {
+          console.error("No tickets found in response");
+        }
+      } catch (error) {
+        console.error("Error fetching tickets:", error);
+      }
+    },
+    removeDuplicates(items) {
+      return items.filter((value, index, self) =>
+        index === self.findIndex((t) => (
+          t.id === value.id
+        ))
+  );
+}
   },
   computed: {
     uniqueProducts() {
