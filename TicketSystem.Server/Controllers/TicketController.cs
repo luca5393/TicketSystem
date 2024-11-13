@@ -25,7 +25,6 @@ namespace TicketSystem.Server.Controllers
 
         private Validator _validator = new Validator();
 
-        // POST
         [HttpPost("createTicket")]
         public async Task<IActionResult> CreateTicket([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
@@ -45,12 +44,12 @@ namespace TicketSystem.Server.Controllers
                 {
                     var model = new Ticket
                     {
-                        Creator_id = ticket.Creator_id,       //user.Id Example value for creator ID
-                        Role_id = ticket.Role_id,          // Example value for role ID
-                        Product_id = ticket.Product_id,       // Example value for product ID
-                        Priority = ticket.Priority,         // Example value for priority
-                        Title = ticket.Title,  // Your title value
-                        Desc = ticket.Desc, // Example body text
+                        Creator_id = ticket.Creator_id, 
+                        Role_id = ticket.Role_id,
+                        Product_id = ticket.Product_id,
+                        Priority = ticket.Priority,
+                        Title = ticket.Title,
+                        Desc = ticket.Desc,
                     };
 
                     await _supabaseClient.From<Ticket>().Insert(model);
@@ -68,9 +67,8 @@ namespace TicketSystem.Server.Controllers
             }
         }
 
-        // POST
         [HttpPost("removeTicket")]
-        public async Task<IActionResult> RemoveTicket([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
+        public async Task<IActionResult> RemoveTicket(int id, [FromHeader(Name = "Authorization")] string authHeader)
         {
             try
             {
@@ -84,26 +82,19 @@ namespace TicketSystem.Server.Controllers
                     return Unauthorized(new { message = "No permission" });
                 }
             
-                if (user.Id == ticket.Creator_id || user.Role_id > 0)
+                try
                 {
-                    try
-                    {
-                        await _supabaseClient
-                          .From<Ticket>()
-                          .Where(x => x.Id == ticket.Id)
-                          .Delete();
+                    await _supabaseClient
+                    .From<Ticket>()
+                    .Where(x => x.Id == id && (x.Creator_id == user.Id || user.Role_id > 0))
+                    .Delete();
 
-                        // Perform some action with the authenticated user
-                        return Ok(new { message = "Ticket removed successfully" });
-                    }
-                    catch (Exception ex)
-                    {
-                        return Unauthorized(new { message = "There was an error editing the ticket", error = ex });
-                    }
+                    return Ok(new { message = "Ticket removed successfully" });
                 }
-
-                return Unauthorized(new { message = "You do not have permission to remove this ticket"});
-
+                catch (Exception ex)
+                {
+                    return Unauthorized(new { message = "There was an error editing the ticket", error = ex });
+                }
             }
             catch (Exception ex)
             {
@@ -111,7 +102,6 @@ namespace TicketSystem.Server.Controllers
             }
         }
 
-        // POST
         [HttpPost("changeTicket")]
         public async Task<IActionResult> ChangeTicket([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
@@ -154,32 +144,71 @@ namespace TicketSystem.Server.Controllers
             }
         }
 
-        // POST
         [HttpPost("ticketToQNA")]
-        public async Task<IActionResult> TicketToQNA([FromHeader(Name = "Authorization")] string authHeader)
+        public async Task<IActionResult> TicketToQNA(int id, [FromHeader(Name = "Authorization")] string authHeader)
         {
-            /*
-            // Retrieve the user's information
-            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
-            if (user == null)
+            try
             {
-                return Unauthorized(new { message = "Could not get user." });
+                User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                if (user == null)
+                {
+                    return Unauthorized(new { message = "Could not get user." });
+                }
+                
+                try
+                {
+                    var result = await _supabaseClient.From<Ticket>().Where(x => x.Id == id).Get();
+                    var ticketList = result.Models.Select(ticket => new TicketViewModel
+                    {
+                        Id = ticket.Id,
+                        Creator_id = ticket.Creator_id,
+                        Role_id = ticket.Role_id,
+                        Product_id = ticket.Product_id,
+                        Priority = ticket.Priority,
+                        Title = ticket.Title,
+                        Desc = ticket.Desc,
+                        Answer = ticket.Answer,
+                        Status = ticket.Status
+                    }).ToList();
+
+                    if (ticketList.First().Status == "open")
+                    {
+                        return Unauthorized(new { message = "This ticket is not closed and an therefore not be made into a qna" });
+                    }
+                    
+                    if (user.Role_id != ticketList.First().Role_id)
+                    {
+                        return Unauthorized(new { message = "You do not have permissions to fetch this ticket" });
+                    }
+                    
+                    var model = new QNA
+                    {
+                        Product_id = ticketList.First().Product_id,
+                        Title = ticketList.First().Title,
+                        Question = ticketList.First().Desc,
+                        Answer = ticketList.First().Answer
+                    };
+
+                    await _supabaseClient.From<QNA>().Insert(model);
+                    
+                    await _supabaseClient
+                        .From<Ticket>()
+                        .Where(x => x.Id == id)
+                        .Delete();
+
+                    return Ok(new { message = "Ticked moved to qna successfully", tickets = ticketList });
+                }
+                catch (Exception ex)
+                {
+                    return Unauthorized(new { message = "There was an error fetching the ticketlist", error = ex.Message });
+                }
             }
-            if (user.Role_id == 0)
+            catch (Exception ex)
             {
-                return Unauthorized(new { message = "No permission" });
+                return Unauthorized(new { message = "There was an error trying to validate the token or getting the user", error = ex.Message });
             }
-            */
-            //QNA CONVERT LOGIC
-
-
-
-
-            // Perform some action with the authenticated user
-            return Ok(new { message = "Data received from authenticated user" });
         }
 
-        // GET
         [HttpGet("roleTicketList")]
         public async Task<IActionResult> RoleTicketList([FromHeader(Name = "Authorization")] string authHeader)
         {
@@ -324,6 +353,7 @@ namespace TicketSystem.Server.Controllers
         public int Product_id { get; set; }
         public int Priority { get; set; }
         public string Title { get; set; }
+        public string Status { get; set; }
         public string Desc { get; set; }
         public string Answer { get; set; }
     }
@@ -349,11 +379,13 @@ namespace TicketSystem.Server.Controllers
         [Column("title")]
         public string Title { get; set; }
 
+        [Column("status")]
+        public string Status { get; set; }
+
         [Column("desc")]
         public string Desc { get; set; }
 
         [Column("answer")]
         public string Answer { get; set; }
     }
-
 }

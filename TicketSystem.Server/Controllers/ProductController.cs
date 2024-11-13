@@ -25,7 +25,6 @@ namespace TicketSystem.Server.Controllers
 
         private Validator _validator = new Validator();
 
-        // GET
         [HttpGet("productList")]
         public async Task<IActionResult> ProductList()
         {
@@ -36,13 +35,11 @@ namespace TicketSystem.Server.Controllers
                 Name = product.Name,
                 Desc = product.Desc,
                 Price = product.Price
-                // other mappings
             }).ToList();
 
             return Ok(new { message = "Success", products = productList });
         }
 
-        // GET
         [HttpPost("productSLA")]
         public async Task<IActionResult> ProductSLA([FromBody] Product Product)
         {
@@ -53,13 +50,11 @@ namespace TicketSystem.Server.Controllers
                 Uptime = sla.Uptime,
                 Resolution_Time = sla.Resolution_time,
                 Respone_Time = sla.Response_time
-                // other mappings
             }).ToList();
 
             return Ok(new { message = "Success", sla = sla });
         }
 
-        // GET
         [HttpPost("productQNAList")]
         public async Task<IActionResult> ProductQNAList([FromBody] Product Product)
         {
@@ -77,7 +72,6 @@ namespace TicketSystem.Server.Controllers
          }
 
     }
-
     public class SLAViewModel
     {
         public int Product_Id { get; set; }
@@ -148,7 +142,7 @@ namespace TicketSystem.Server.Controllers
     [Table("qna")]
     public class QNA : BaseModel
     {
-        [PrimaryKey("id", true)]
+        [PrimaryKey("id", false)]
         public int Id { get; set; }
 
         [Column("product_id")]
