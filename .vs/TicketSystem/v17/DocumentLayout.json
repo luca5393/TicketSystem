@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\product.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\product.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\ticket.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\ticket.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\components\\productlist.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\components\\productlist.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\components\\header.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\components\\header.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\home.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\home.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\assets\\base.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\assets\\base.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\components\\ticketslist.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\components\\ticketslist.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\product.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\product.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\login.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -21,6 +33,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\signup.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\signup.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\lolga\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\components\\header.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\components\\header.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,15 +58,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Product.vue",
-              "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Product.vue",
-              "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Product.vue",
-              "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Product.vue",
-              "RelativeToolTip": "ticketsystem.client\\src\\views\\Product.vue",
-              "ViewState": "AgIAADIAAAAAAAAAAAAwwEcAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "base.css",
+              "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\assets\\base.css",
+              "RelativeDocumentMoniker": "ticketsystem.client\\src\\assets\\base.css",
+              "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\assets\\base.css",
+              "RelativeToolTip": "ticketsystem.client\\src\\assets\\base.css",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-11-13T16:58:19.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TicketsList.vue",
+              "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\TicketsList.vue",
+              "RelativeDocumentMoniker": "ticketsystem.client\\src\\components\\TicketsList.vue",
+              "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\TicketsList.vue",
+              "RelativeToolTip": "ticketsystem.client\\src\\components\\TicketsList.vue",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKMAAAAPAAAAAAAAAA==",
               "Icon": "cb4a8fc6-efe7-424a-b611-23adf22b568e.000035|",
-              "WhenOpened": "2024-11-13T15:21:07.131Z",
+              "WhenOpened": "2024-11-13T16:48:49.871Z",
               "EditorCaption": ""
             },
             {
@@ -61,14 +90,53 @@
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\components\\ProductList.vue",
               "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\ProductList.vue",
               "RelativeToolTip": "ticketsystem.client\\src\\components\\ProductList.vue",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACsAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAB4AAAALAAAAAAAAAA==",
               "Icon": "cb4a8fc6-efe7-424a-b611-23adf22b568e.000035|",
-              "WhenOpened": "2024-11-13T12:25:12.143Z",
+              "WhenOpened": "2024-11-13T16:45:05.706Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Home.vue",
+              "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Home.vue",
+              "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Home.vue",
+              "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Home.vue",
+              "RelativeToolTip": "ticketsystem.client\\src\\views\\Home.vue",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAACUAAAAKAAAAAAAAAA==",
+              "Icon": "cb4a8fc6-efe7-424a-b611-23adf22b568e.000035|",
+              "WhenOpened": "2024-11-13T16:43:50.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Ticket.vue",
+              "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Ticket.vue",
+              "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Ticket.vue",
+              "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Ticket.vue",
+              "RelativeToolTip": "ticketsystem.client\\src\\views\\Ticket.vue",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAuwCIBAAAAAAAAAAAAAA==",
+              "Icon": "cb4a8fc6-efe7-424a-b611-23adf22b568e.000035|",
+              "WhenOpened": "2024-11-13T16:42:08.106Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Product.vue",
+              "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Product.vue",
+              "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Product.vue",
+              "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Product.vue",
+              "RelativeToolTip": "ticketsystem.client\\src\\views\\Product.vue",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
+              "Icon": "cb4a8fc6-efe7-424a-b611-23adf22b568e.000035|",
+              "WhenOpened": "2024-11-13T15:21:07.131Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Header.vue",
               "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\Header.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\components\\Header.vue",
@@ -76,25 +144,24 @@
               "RelativeToolTip": "ticketsystem.client\\src\\components\\Header.vue",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "cb4a8fc6-efe7-424a-b611-23adf22b568e.000035|",
-              "WhenOpened": "2024-11-13T11:45:56.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-13T11:45:56.869Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Login.vue",
               "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Login.vue",
               "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
               "RelativeToolTip": "ticketsystem.client\\src\\views\\Login.vue",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAzwC0AAAAkAAAAAAAAAA==",
               "Icon": "cb4a8fc6-efe7-424a-b611-23adf22b568e.000035|",
               "WhenOpened": "2024-11-12T07:25:06.638Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Signup.vue",
               "DocumentMoniker": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Signup.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Signup.vue",
