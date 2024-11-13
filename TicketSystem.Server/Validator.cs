@@ -15,7 +15,8 @@ public class Validator
     // Method to validate token and retrieve user
     public async Task<User> validateTokenAndGetUser(string token)
     {
-        Supabase.Gotrue.User user = await _supabaseClient.AdminAuth(_supabaseJwtSecret).GetUser(token);
+        var user = await _supabaseClient.AdminAuth(_supabaseJwtSecret).GetUser(token);
+        Console.Write(user);
         var result = await _supabaseClient.From<User>().Where(x => x.Id == user.Id).Get();
         return result.Models[0];
     }

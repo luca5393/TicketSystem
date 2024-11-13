@@ -31,9 +31,9 @@ namespace TicketSystem.Server.Controllers
         {
             try
             {
-
                 // Retrieve the user's information
                 User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+                return Unauthorized(new { message = user });
                 if (user == null) 
                 {
                     return Unauthorized(new { message = "Could not get user." });
@@ -97,9 +97,9 @@ namespace TicketSystem.Server.Controllers
 
         // POST
         [HttpPost("changeTicket")]
-        public async Task<IActionResult> ChangeTickete([FromBody] Ticket ticket)//, [FromHeader(Name = "Authorization")] string authHeader)
+        public async Task<IActionResult> ChangeTickete([FromBody] Ticket ticket, [FromHeader(Name = "Authorization")] string authHeader)
         {
-            /*
+            
             // Retrieve the user's information
             User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
@@ -110,7 +110,6 @@ namespace TicketSystem.Server.Controllers
             {
                 return Unauthorized(new { message = "No permission" });
             }
-            */
             //TODO: ADD CONFIRMATION THAT THE Ticket is the actual ticket
 
 
@@ -161,7 +160,7 @@ namespace TicketSystem.Server.Controllers
         [HttpGet("roleTicketList")]
         public async Task<IActionResult> RoleTicketList([FromHeader(Name = "Authorization")] string authHeader)
         {
-            User user = _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
+            User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
             if (user == null)
             {
                 return Unauthorized(new { message = "Could not get user." });

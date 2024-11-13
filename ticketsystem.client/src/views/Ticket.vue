@@ -96,6 +96,7 @@ export default {
         supporter: "",
         product: "",
         helped: "",
+        answer: "",
       },
       ticketDetail: null,
     };
@@ -106,7 +107,8 @@ export default {
   },
   methods: {
     async createOrUpdateTicket() {
-      const token = supabase.auth.getSession();
+      const token = await supabase.auth.getSession();
+      console.log(token);
       if (this.mode === "create") {
         var url = 'https://localhost:7253/Ticket/createTicket'
       }
@@ -118,7 +120,7 @@ export default {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token.data.session.access_token}`
           },
           body: JSON.stringify({
             creator_id: this.ticket.helped,
@@ -127,6 +129,7 @@ export default {
             priority: this.ticket.priority,
             title: this.ticket.title,
             desc: this.ticket.description,
+            answer: this.ticket.answer,
           })
         });
 
