@@ -81,7 +81,56 @@ export default {
       return this.id;
     },
   },
-};
+    methods: {
+      async fetchSLA() {
+        try {
+          const response = await fetch(`https://localhost:7253/Product/productSLA`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: this.productId, Desc: "", Name: "" }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const slaData = await response.json();
+
+          this.uptime = slaData.sla[0].uptime || 'N/A';
+          this.resolutionTime = slaData.sla[0].resolution_Time || 'N/A';
+          this.responseTime = slaData.sla[0].respone_Time || 'N/A';
+
+        } catch (error) {
+          console.error('Error fetching SLA:', error);
+        }
+      },
+      
+      async fetchQnA() {
+        this.qnaList = [
+          { question: 'Sample Question 1?', answer: 'Sample Answer 1' },
+          { question: 'Sample Question 2?', answer: 'Sample Answer 2' },
+        ];
+        try {
+          const response = await fetch(`https://localhost:7253/Product/productQNAList`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: this.productId, Desc: "", Name: "" }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const qnaData = await response.json();
+          console.log(qnaData.qna);
+          this.qnaList = qnaData.qna
+
+        } catch (error) {
+          console.error('Error fetching SLA:', error);
+        }
+      },
+    },
+  };
 </script>
 
 <style scoped>
