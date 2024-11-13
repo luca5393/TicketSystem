@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eh+PlTjMZ7g=",
+  "dgSpecHash": "x9hqtltW0IM=",
   "success": true,
   "projectFilePath": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\TicketSystem.Server.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,12 @@
     "C:\\Users\\HFGF\\.nuget\\packages\\websocket.client\\5.1.1\\websocket.client.5.1.1.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

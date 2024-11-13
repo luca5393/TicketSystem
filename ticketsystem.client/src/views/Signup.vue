@@ -83,13 +83,21 @@ export default {
 }
 
 .wrapper {
-  width: 100%;
+  width: 30%;
   background: transparent;
   border: 2px solid var(--color-wrapper-border);
   backdrop-filter: blur(8px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .wrapper h1 {

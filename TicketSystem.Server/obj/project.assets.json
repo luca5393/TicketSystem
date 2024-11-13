@@ -1298,6 +1298,7 @@
     "net8.0": [
       "Microsoft.AspNet.Cors >= 5.3.0",
       "Microsoft.AspNetCore.SpaProxy >= 8.*-*",
+      "Newtonsoft.Json >= 13.0.3",
       "Supabase >= 1.1.1",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
@@ -1354,6 +1355,10 @@
             "target": "Package",
             "version": "[8.*-*, )"
           },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
+          },
           "Supabase": {
             "target": "Package",
             "version": "[1.1.1, )"
@@ -1387,6 +1392,12 @@
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

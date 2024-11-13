@@ -45,41 +45,51 @@ const submitForm = async () => {
         console.error('An error occurred during login:', error);
         alert('An error occurred. Please try again.');
     }
-};
-</script>
+  };
+  </script>
 
-<style scoped>
-* {
+
+  <style scoped>
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
-}
+  }
 
-.wrapper {
-    width: 100%;
+  .wrapper {
+    width: 30%;
     background: transparent;
     border: 2px solid var(--color-wrapper-border);
     backdrop-filter: blur(8px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 30px 80px;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-.wrapper h1 {
+
+  .wrapper h1 {
     font-size: 36px;
     text-align: center;
-}
+  }
 
-.wrapper .input-box {
+  .wrapper .input-box {
     position: relative;
     width: 100%;
     height: 50px;
     margin: 30px 0;
 
-}
+  }
 
-.input-box input {
+  .input-box input {
     width: 100%;
     height: 100%;
     background: transparent;
@@ -90,41 +100,41 @@ const submitForm = async () => {
     font-size: 16px;
     padding: 20px 45px 20px 20px;
     color: var(--input-color-text);
-}
+  }
 
-.input-box input::placeholder {
+  .input-box input::placeholder {
     color: var(--color-placeholder);
-}
+  }
 
-.input-box i {
+  .input-box i {
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
-}
+  }
 
-.wrapper .remember-forgot {
+  .wrapper .remember-forgot {
     display: flex;
     justify-content: space-between;
     font-size: 14.5px;
     margin: -15px 0 15px;
-}
+  }
 
-.remember-forgot label input {
+  .remember-forgot label input {
     margin-right: 3px;
-}
+  }
 
-.remember-forgot a {
+  .remember-forgot a {
     color: var(--color-link);
     text-decoration: none;
-}
+  }
 
-.remember-forgot a:hover {
+  .remember-forgot a:hover {
     text-decoration: underline;
-}
+  }
 
-.wrapper .btn {
+  .wrapper .btn {
     width: 100%;
     height: 45px;
     background: var(--color-button);
@@ -136,21 +146,21 @@ const submitForm = async () => {
     font-size: 16px;
     color: var(--color-button-text);
     font-weight: 600;
-}
+  }
 
-.wrapper .register-link {
+  .wrapper .register-link {
     font-size: 14.5px;
     text-align: center;
     margin: 20px 0 15px;
-}
+  }
 
-.register-link p a {
+  .register-link p a {
     color: var(--color-link);
     text-decoration: none;
     font-weight: 600;
-}
+  }
 
-.register-link p a:hover {
+  .register-link p a:hover {
     text-decoration: underline;
-}
-</style>
+  }
+  </style>

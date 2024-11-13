@@ -22,8 +22,16 @@ namespace TicketSystem.Server.Controllers
 
         private Supabase.Client _supabaseClient = new SupabaseConnector().GetSupabaseClient();
 
+<<<<<<< HEAD
         [HttpPost("signup")]
         public async Task<IActionResult> Signup([FromBody] UserSignIn user)
+=======
+        private Validator _validator = new Validator();
+        /*
+        // POST api/login
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
+>>>>>>> main
         {
             if (user == null || string.IsNullOrEmpty(user.password) || string.IsNullOrEmpty(user.username) || string.IsNullOrEmpty(user.email))
             {
@@ -58,12 +66,31 @@ namespace TicketSystem.Server.Controllers
             [Column("role")]
             public int role { get; set; }
 
+<<<<<<< HEAD
             [Column("username")]
             public string username { get; set; }
+=======
+            // Validate the JWT token manually
+            var validatedToken = _validator.ValidateToken(token);
+            if (validatedToken == null)
+            {
+                return Unauthorized(new { message = "Invalid or expired token." });
+            }
+
+            // Retrieve the user's information
+            var user = await _supabaseClient.Auth.GetUser(_supabaseJwtSecret);
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Supabase user not found." });
+            }
+
+            return Ok(new { message = "Authenticated user", userEmail = user.Email });
+>>>>>>> main
         }
 
         public class UserSignIn
         {
+<<<<<<< HEAD
             public int role { get; set; }
             public string username { get; set; }
             public string password { get; set; }
@@ -76,5 +103,32 @@ namespace TicketSystem.Server.Controllers
             public string Email { get; set; }
             public string Password { get; set; }
         }
+=======
+            if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
+            {
+                return Unauthorized(new { message = "Missing or invalid Authorization header." });
+            }
+
+            var token = authHeader.Substring("Bearer ".Length).Trim();
+
+            // Validate the JWT token manually
+            var validatedToken = _validator.ValidateToken(token);
+            if (validatedToken == null)
+            {
+                return Unauthorized(new { message = "Invalid or expired token." });
+            }
+
+            // Retrieve the user's information
+            var user = await _supabaseClient.Auth.GetUser(_supabaseJwtSecret);
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Supabase user not found." });
+            }
+
+            // Perform some action with the authenticated user
+            return Ok(new { message = "Data received from authenticated user", userEmail = user.Email });
+        }
+        */
+>>>>>>> main
     }
 }
