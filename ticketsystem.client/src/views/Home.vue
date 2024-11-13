@@ -4,19 +4,20 @@ import ProductList from '@/components/ProductList.vue';
 </script>
 
 <template>
-    <AppHeader />
-    <div class="main-container test">
-        <div class="tab-container">
-            <input type="checkbox" id="tab-switch" v-model="ticketListTab" />
-            <label for="tab-switch" class="tab-label">
-                <span class="tab-option">Products</span>
-                <span class="tab-option">Tickets</span>
-            </label>
-        </div>
-
-        <ProductList v-if="!ticketListTab"/>
-        <TicketsList v-else/>
+  <AppHeader />
+  <div class="wrapper">
+    <div class="tab-container">
+      <input type="checkbox" id="tab-switch" v-model="ticketListTab" />
+      <label for="tab-switch" class="tab-label">
+        <span class="tab-option">Products</span>
+        <span class="tab-option">Tickets</span>
+      </label>
     </div>
+    <div class="product-list">
+      <ProductList v-if="!ticketListTab" />
+      <TicketsList v-else />
+    </div>
+  </div>
 </template>
 
 <script lang="js">
@@ -32,10 +33,23 @@ export default {
 </script>
 
 <style scoped>
-.main-container {
-    display: flex;
-    margin: 7rem 2rem 2rem 2rem;
+
+.wrapper {
+  width: 70vh;
+  height: 100vh;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
 .tab-container {
   display: flex;
   flex-direction: column;
@@ -44,6 +58,7 @@ export default {
   margin: 20px auto;
 }
 
+
 #tab-switch {
   display: none;
 }
@@ -51,7 +66,8 @@ export default {
 .tab-label {
   display: flex;
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: var(--color-placeholder);
+  color: var(--color-button-text);
   border-radius: 20px;
   cursor: pointer;
   padding: 5px;

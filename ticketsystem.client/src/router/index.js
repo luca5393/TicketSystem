@@ -22,9 +22,6 @@ const routes = [
     component: Signup,
   },
 
-
-    // Ticket routes
-    // Start
   {
     path: '/ticket',
     redirect: '/ticket/create',
@@ -39,14 +36,16 @@ const routes = [
     path: '/ticket/:id',
     name: 'TicketView',
     component: Ticket,
-    props: true,
+    props: route => ({ id: route.params.id, mode: 'view' }),
   },
-    // Ticket routes
-    // END
-  
+  {
+    path: '/ticket/:id/edit',
+    name: 'TicketEdit',
+    component: Ticket,
+    props: route => ({ id: route.params.id, mode: 'edit' }),
+  },
 
-    // Product routes
-    // Start
+  // Product routes
   {
     path: '/product',
     redirect: '/',
@@ -62,16 +61,14 @@ const routes = [
     path: '/product/:id/qna',
     name: 'ProductQna',
     component: Product,
-    props: { section: 'qna' },
+    props: route => ({ id: route.params.id, section: 'qna' }),
   },
   {
     path: '/product/:id/sla',
     name: 'ProductSla',
     component: Product,
-    props: { section: 'sla' },
+    props: route => ({ id: route.params.id, section: 'sla' }),
   },
-    // Product routes
-    // END
 ];
 
 const router = createRouter({
