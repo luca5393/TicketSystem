@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\UserController.cs",
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\UserController.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAAACkAAABLAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAEYAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-13T17:13:17.566Z",
               "EditorCaption": ""
@@ -73,7 +73,7 @@
               "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\TicketController.cs",
               "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\TicketController.cs",
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\TicketController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADkBAABGAAAAAAAAAA==",
+              "ViewState": "AgIAADwBAAAAAAAAAAAAAEgBAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-12T10:19:35.781Z",
               "EditorCaption": ""
@@ -101,8 +101,7 @@
               "RelativeToolTip": "TicketSystem.Server\\Validator.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T10:25:26.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-12T10:25:26.186Z"
             },
             {
               "$type": "Document",
@@ -114,8 +113,7 @@
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T10:19:01.332Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-12T10:19:01.332Z"
             },
             {
               "$type": "Document",

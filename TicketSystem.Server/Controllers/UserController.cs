@@ -64,6 +64,7 @@ namespace TicketSystem.Server.Controllers
         public string Username { get; set; }
     }
 
+    [Table("users")]
     public class UserData : BaseModel
     {
         [PrimaryKey("id", false)]
