@@ -84,6 +84,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
+import supabase from '@/supabase';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -117,12 +118,64 @@ export default {
   },
   methods: {
     async createOrUpdateTicket() {
+      const token = supabase.auth.getSession();
+
       if (this.mode === "create") {
         console.log("Creating ticket:", this.ticket);
-        // Logic to save the new ticket
+        console.log(token);
+        try {
+        const response = await fetch('https://localhost:7253/Ticket/createTicket', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            creator_id: this.ticket.helped,
+            role_id: this.ticket.role_id,
+            product_id: this.ticket.product_id,
+            priority: this.ticket.priority,
+            title: this.ticket.title,
+            desc: this.ticket.description,
+          })
+        });
+
+        if (!response.ok) {
+          alert('An error occurred while saving user data.');
+          return;
+        }
+      } catch (error) {
+        console.error('An error occurred during signup:', error);
+        alert('An error occurred. Please try again.');
+      }
+
       } else if (this.mode === "edit") {
         console.log("Updating ticket:", this.ticket);
-        // Update ticket logic here
+        try {
+        const response = await fetch('https://localhost:7253/Ticket/createTicket', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            creator_id: this.ticket.helped,
+            role_id: this.ticket.role_id,
+            product_id: this.ticket.product_id,
+            priority: this.ticket.priority,
+            title: this.ticket.title,
+            desc: this.ticket.description,
+          })
+        });
+
+        if (!response.ok) {
+          alert('An error occurred while saving user data.');
+          return;
+        }
+      } catch (error) {
+        console.error('An error occurred during signup:', error);
+        alert('An error occurred. Please try again.');
+      }
         this.router.push(`/ticket/${this.id}`);
       }
     },
