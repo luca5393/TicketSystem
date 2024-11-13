@@ -61,19 +61,9 @@ export default {
   data() {
     return {
       uptime: "99.9%",
-      slaMetrics: [
-        { name: "Response Time", value: "200 ms" },
-        { name: "Availability", value: "99.95%" },
-        { name: "Downtime", value: "2 hours/month" },
-      ],
+      slaMetrics: [],
       slaTarget: "",
-      qnaList: [
-        { question: "What is the warranty period for this product?", answer: "The warranty period is 2 years from the purchase date." },
-        { question: "How can I reset the product settings?", answer: "To reset, press and hold the reset button for 10 seconds." },
-        { question: "Is this product compatible with other brands?", answer: "Yes, it is compatible with most brands in the market." },
-        { question: "What is the power consumption?", answer: "The product consumes 50 watts during operation." },
-        { question: "Can I use this product outdoors?", answer: "This product is designed for indoor use only." },
-      ],
+      qnaList: [],
     };
   },
   computed: {
@@ -106,10 +96,6 @@ export default {
       },
       
       async fetchQnA() {
-        this.qnaList = [
-          { question: 'Sample Question 1?', answer: 'Sample Answer 1' },
-          { question: 'Sample Question 2?', answer: 'Sample Answer 2' },
-        ];
         try {
           const response = await fetch(`https://localhost:7253/Product/productQNAList`, {
             method: 'POST',
