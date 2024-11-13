@@ -66,15 +66,18 @@
       <!-- Ticket Detail View -->
       <h2>Ticket Detail</h2>
       <p><strong class="title">Title:</strong> {{ ticketDetail.title }}</p>
-      <p class="description"><strong>Description:</strong> {{ ticketDetail.description }}</p>
+      <p class="description"><strong class="title">Description:</strong> {{ ticketDetail.description }}</p>
       <p><strong class="title">Priority:</strong> {{ ticketDetail.priority }}</p>
       <p><strong class="title">Assigned Supporter:</strong> {{ ticketDetail.supporter }}</p>
       <p><strong class="title">Product:</strong> {{ ticketDetail.product }}</p>
       <p><strong class="title">Helped Person:</strong> {{ ticketDetail.helped }}</p>
 
-      <!-- Edit and Delete Buttons -->
-      <button @click="createQna" class="qna-button">Create QNA</button>
-      <button @click="navigateToEdit" class="edit-button">Edit</button>
+      <!-- Button Container for Edit and Delete Buttons -->
+      <div class="button-container">
+        <button @click="createQna" class="qna-button">Create QNA</button>
+        <button @click="navigateToEdit" class="edit-button">Edit</button>
+        <button @click="deleteTicket" class="delete-button">Delete</button>
+      </div>
     </div>
   </div>
 </template>
@@ -159,9 +162,20 @@
           console.error('Error fetching QNA:', error);
         }
       },
-      deleteTicket() {
-        console.log("Deleting ticket with ID:", this.id);
-        // Logic to delete the ticket
+      async deleteTicket() {
+        try {
+          // Simulate a delete request (Replace with actual API call)
+          const response = await fetch(`https://localhost:7253/tickets/${this.id}`, {
+            method: 'DELETE',
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          console.log("Ticket deleted successfully");
+          this.router.push('/tickets'); // Redirect to the tickets list page after deletion
+        } catch (error) {
+          console.error("Error deleting ticket:", error);
+        }
       },
     },
     watch: {
@@ -239,11 +253,11 @@
     margin-top: 10px;
   }
 
-    .select-box option,
-    .select-products option {
-      background-color: var(--color-background);
-      color: var(--input-color-text);
-    }
+  .select-box option,
+  .select-products option {
+    background-color: var(--color-background);
+    color: var(--input-color-text);
+  }
 
   .description-input {
     resize: none;
@@ -260,16 +274,29 @@
     cursor: pointer;
   }
 
-  .edit-button {
+  .button-container {
+    display: flex;
+    gap: 10px; /* Adds spacing between buttons */
     margin-top: 10px;
+  }
+
+  .edit-button,
+  .delete-button {
     padding: 8px 12px;
-    background-color: green;
     color: var(--input-color-text);
     border: solid;
     border-color: var(--color-border);
     border-radius: 1px;
     cursor: pointer;
-    margin-left: 20vw;
+  }
+
+  .edit-button {
+    margin-left: 15vw;
+    background-color: green;
+  }
+
+  .delete-button {
+    background-color: red;
   }
 
   .qna-button {
