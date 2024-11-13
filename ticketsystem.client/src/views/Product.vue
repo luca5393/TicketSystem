@@ -85,6 +85,7 @@
           console.error('Error fetching SLA:', error);
         }
       },
+      
       async fetchQnA() {
         this.qnaList = [
           { question: 'Sample Question 1?', answer: 'Sample Answer 1' },
