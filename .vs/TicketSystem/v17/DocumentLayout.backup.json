@@ -1,33 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\",
+  "WorkspaceRootPath": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\supabaseconnector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\supabaseconnector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\controllers\\supabaseconnector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\login.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\login.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\supabase.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\supabase.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\signup.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\signup.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242E0944-8AF8-4A62-964D-DB6C6C08E325}|TicketSystem.Server\\TicketSystem.Server.csproj|solutionrelative:ticketsystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\marcu\\documents\\github\\ticketsystem\\ticketsystem.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\login.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\login.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\supabase.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\supabase.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.client\\src\\views\\signup.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\src\\views\\signup.vue||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|c:\\users\\hfgf\\documents\\github\\ticketsystem\\ticketsystem.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{C1A1BCBA-F830-49BE-B1BF-5BB5264366AF}|ticketsystem.client\\ticketsystem.client.esproj|solutionrelative:ticketsystem.client\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
@@ -41,16 +45,24 @@
           "SelectedChildIndex": 5,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "TicketSystem.Server\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T09:41:31.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Login.vue",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Login.vue",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Login.vue",
               "RelativeToolTip": "ticketsystem.client\\src\\views\\Login.vue",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
@@ -58,11 +70,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "supabase.js",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\supabase.js",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\supabase.js",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\supabase.js",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\supabase.js",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\supabase.js",
               "RelativeToolTip": "ticketsystem.client\\src\\supabase.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
@@ -70,11 +82,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Signup.vue",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Signup.vue",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Signup.vue",
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\views\\Signup.vue",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Signup.vue",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\views\\Signup.vue",
               "RelativeToolTip": "ticketsystem.client\\src\\views\\Signup.vue",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
@@ -84,9 +96,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "SupabaseConnector.cs",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\SupabaseConnector.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\SupabaseConnector.cs",
               "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\SupabaseConnector.cs",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\SupabaseConnector.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\SupabaseConnector.cs",
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\SupabaseConnector.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -96,34 +108,34 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "LoginController.cs",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "TicketSystem.Server\\Controllers\\LoginController.cs",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Controllers\\LoginController.cs",
               "RelativeToolTip": "TicketSystem.Server\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAAEwAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAADwvyUAAABuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-08T07:39:57.355Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
               "RelativeDocumentMoniker": "TicketSystem.Server\\Program.cs",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\Program.cs",
               "RelativeToolTip": "TicketSystem.Server\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAcwCQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-31T12:19:46.498Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "vite.config.js",
-              "DocumentMoniker": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
+              "DocumentMoniker": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
               "RelativeDocumentMoniker": "ticketsystem.client\\vite.config.js",
-              "ToolTip": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
+              "ToolTip": "C:\\Users\\HFGF\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\vite.config.js",
               "RelativeToolTip": "ticketsystem.client\\vite.config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",

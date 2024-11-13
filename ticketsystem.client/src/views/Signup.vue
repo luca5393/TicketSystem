@@ -24,63 +24,55 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import supabase from '@/supabase'; // Import Supabase client
+<script>
 import { useRouter } from 'vue-router';
 
-const router = useRouter();
+export default {
+  data() {
+    return {
+      username: '',
+      email: '',
+      password: '',
+      repeatPassword: '',
+    };
+  },
+  methods: {
+    async formSubmit() {
+      if (this.password !== this.repeatPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
 
-const username = ref('');
-const email = ref('');
-const password = ref('');
-const repeatPassword = ref('');
-const userSession = ref(null); // This will hold the session if needed
+      try {
+        // Send the user ID to the backend to store custom data
+        const response = await fetch('http://localhost:7253/Api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: this.username,
+            email: this.email,
+            password: this.password,
+            role: 0,
+          })
+        });
 
-const formSubmit = async () => {
-  if (password.value !== repeatPassword.value) {
-    alert('Passwords do not match!');
-    return;
-  }
+        if (!response.ok) {
+          alert('An error occurred while saving user data.');
+          return;
+        }
 
-  try {
-    // Create a new user with Supabase authenticatilon
-    const { user, session, error } = await supabase.auth.signUp({
-      email: email.value,
-      password: password.value,
-    });
-
-    if (error) {
-      alert(error.message);
-      return;
+        // Redirect or perform additional actions
+        const router = useRouter(); // Get the router instance
+        router.push({ name: 'login' });
+      } catch (error) {
+        console.error('An error occurred during signup:', error);
+        alert('An error occurred. Please try again.');
+      }
     }
-
-    const currentUser = await supabase.auth.getUser();
-
-    // Send the user ID to the backend to store custom data
-    const response = await fetch('http://localhost:7253/Api/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id: currentUser.id,  // Supabase user ID
-        username: username.value,
-        role: 4  // Or any role you want to set
-      })
-    });
-
-    if (!response.ok) {
-      alert('An error occurred while saving user data.');
-      return;
-    }
-
-    // Redirect or perform additional actions
-    router.push({ name: 'login' });
-  } catch (error) {
-    console.error('An error occurred during signup:', error);
-    alert('An error occurred. Please try again.');
   }
 };
 </script>
+
 
 <style scoped>
 * {
