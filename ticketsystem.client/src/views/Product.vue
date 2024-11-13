@@ -2,14 +2,35 @@
   <AppHeader />
 
   <div class="wrapper">
-    <h1>Product {{ productId }}</h1>
+    <h1 class="product-heading">Product {{ productId }}</h1>
 
     <div v-if="section === 'qna'">
       <h2>QnA Section</h2>
     </div>
 
     <div v-else-if="section === 'sla'">
-      <h2>SLA Section</h2>
+      <div class="uptime">
+        <h2>SLA Section</h2>
+
+        <!-- Uptime display -->
+        <div class="uptime-info">
+          <label class="uptime-label">Product Uptime:</label>
+          <span class="uptime-value">{{ uptime }}</span>
+        </div>
+
+        <!-- SLA metrics display -->
+        <div class="sla-metrics">
+          <label class="sla-label">Current SLA Metrics:</label>
+          <ul class="sla-list">
+            <li v-for="(metric, index) in slaMetrics" :key="index">
+              <strong>{{ metric.name }}:</strong> {{ metric.value }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- SLA targets input -->
+        <div class="sla-targets"></div>
+      </div>
     </div>
 
     <div v-else>
@@ -21,7 +42,7 @@
 <script>
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Product',
+  name: "Product",
   props: {
     id: {
       type: String,
@@ -29,8 +50,19 @@ export default {
     },
     section: {
       type: String,
-      default: 'qna',
+      default: "qna",
     },
+  },
+  data() {
+    return {
+      uptime: "99.9%", // Placeholder value
+      slaMetrics: [
+        { name: "Response Time", value: "200 ms" },
+        { name: "Availability", value: "99.95%" },
+        { name: "Downtime", value: "2 hours/month" },
+      ],
+      slaTarget: "", // Editable SLA target
+    };
   },
   computed: {
     productId() {
@@ -40,11 +72,9 @@ export default {
 };
 </script>
 
-
 <style scoped>
-
 .wrapper {
-  width: 60vh;
+  width: 100vw;
   height: 100vh;
   padding: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -59,4 +89,47 @@ export default {
   transform: translate(-50%, -50%);
 }
 
+h1 {
+  margin-right: 7vw;
+}
+
+.product-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.uptime {
+  margin-right: 1vw;
+  text-align: left;
+}
+
+.uptime-info,
+.sla-metrics,
+.sla-targets {
+  margin-bottom: 15px;
+}
+
+.uptime-label,
+.sla-label,
+.sla-target-label {
+  display: flex;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.uptime-value {
+  font-size: 16px;
+}
+
+.sla-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sla-list li {
+  margin-bottom: 5px;
+}
 </style>

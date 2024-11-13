@@ -87,7 +87,7 @@ export default {
 
 div {
   font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 10px;
   background-color: var(--color-background);
   border-radius: 8px;
   max-width: 700px;
@@ -126,7 +126,6 @@ ul {
   border: 1px solid var(--color-button);
   color: var(--input-color-text);
   padding: 10px;
-  margin-bottom: 10px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   cursor: pointer;
