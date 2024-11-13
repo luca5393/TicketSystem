@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace TicketSystem.Server.Controllers
@@ -28,14 +29,21 @@ namespace TicketSystem.Server.Controllers
         [HttpGet("productList")]
         public async Task<IActionResult> ProductList()
         {
-            var result = await _supabaseClient.From<Product>().Get();
-            var productList = result.Models;
+            var result = await _supabaseClient.From<Product>().Order("id", Supabase.Postgrest.Constants.Ordering.Ascending).Get();
+            var productList = result.Models.Select(product => new ProductViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Desc = product.Desc,
+                price = product.Price
+                // other mappings
+            }).ToList();
 
-            return Ok(new { message = "Succes", products = productList });
+            return Ok(new { message = "Success", products = productList });
         }
 
         // GET
-        [HttpGet("productSLA")]
+        [HttpPost("productSLA")]
         public async Task<IActionResult> ProductSLAList([FromBody] Product Product)
         {
             var result = await _supabaseClient.From<SLA>().Where(x => x.Product_id == Product.Id).Get();
@@ -45,7 +53,7 @@ namespace TicketSystem.Server.Controllers
         }
 
         // GET
-        [HttpGet("productQNAList")]
+        [HttpPost("productQNAList")]
         public async Task<IActionResult> ProductQNAList([FromBody] Product Product)
         {
             var result = await _supabaseClient.From<QNA>().Where(x => x.Product_id == Product.Id).Get();
@@ -54,6 +62,17 @@ namespace TicketSystem.Server.Controllers
             return Ok(new { message = "Succes", productQNAList = QNAList });
         }
 
+    }
+
+    public class ProductViewModel
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Desc { get; set; }
+
+        public int price { get; set; }
     }
 
     [Table("products")]
@@ -69,7 +88,7 @@ namespace TicketSystem.Server.Controllers
         public string Desc { get; set; }
 
         [Column("price")]
-        public int price { get; set; }
+        public int Price { get; set; }
     }
 
     [Table("sla")]
