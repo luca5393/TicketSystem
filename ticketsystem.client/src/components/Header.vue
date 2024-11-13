@@ -3,15 +3,13 @@
     <div class="left">
       <h1><router-link to="/">Ticket System</router-link></h1>
       <nav>
-        <ul v-if="LoggedIn">
-          
-        </ul>
+        <ul v-if="LoggedIn"></ul>
       </nav>
     </div>
     <nav class="right">
       <ul v-if="LoggedIn">
         <li><router-link to="/ticket">Create Ticket</router-link></li>
-        <li @click="logout">Logout</li>
+        <li><a href="#" @click.prevent="logout" class="logout-link">Logout</a></li>
       </ul>
       <ul v-else>
         <li><router-link to="/login">Login</router-link></li>
@@ -72,7 +70,7 @@
   .left {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Add some space between the title and the Create Ticket button */
+    gap: 1rem;
   }
 
   nav ul {
@@ -81,14 +79,13 @@
     gap: 1rem;
   }
 
-  nav a {
+  nav a, .logout-link {
     color: white;
     text-decoration: none;
+    cursor: pointer;
   }
 
-    nav a.router-link-exact-active {
-      font-weight: bold;
-    }
+  
 
   .right {
     margin-left: auto;

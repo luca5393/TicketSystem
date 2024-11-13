@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "ticketsystem.client\\src\\components\\Header.vue",
               "ToolTip": "C:\\Users\\lolga\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\src\\components\\Header.vue",
               "RelativeToolTip": "ticketsystem.client\\src\\components\\Header.vue",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
               "WhenOpened": "2024-11-13T11:45:56.869Z",
               "EditorCaption": ""
@@ -55,8 +55,7 @@
               "RelativeToolTip": "ticketsystem.client\\src\\views\\Login.vue",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-11-12T07:25:06.638Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-12T07:25:06.638Z"
             },
             {
               "$type": "Document",
@@ -68,8 +67,7 @@
               "RelativeToolTip": "ticketsystem.client\\src\\views\\Signup.vue",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-11-12T07:20:58.8Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-12T07:20:58.8Z"
             }
           ]
         },
