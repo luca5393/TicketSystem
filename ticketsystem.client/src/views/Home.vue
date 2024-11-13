@@ -35,7 +35,7 @@ export default {
 <style scoped>
 
 .wrapper {
-  width: 70vh;
+  width: 100vw;
   height: 100vh;
   padding: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -78,7 +78,7 @@ export default {
   text-align: center;
   padding: 10px;
   font-weight: bold;
-  color: #666;
+  color: var(--color-button-text);
   transition: color 0.3s ease;
 }
 
