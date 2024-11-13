@@ -90,8 +90,7 @@ import supabase from '@/supabase';
         default: null,
       },
       ticketDetail: null,
-    };
-  },
+    },
   setup() {
     const router = useRouter();
     return { router };
@@ -250,7 +249,8 @@ import supabase from '@/supabase';
         }
       },
     },
-  };
+  },
+}
 </script>
 
 <style scoped>
