@@ -214,6 +214,7 @@ namespace TicketSystem.Server.Controllers
         {
             try
             {
+                
                 User user = await _validator.validateTokenAndGetUser(authHeader.Substring("Bearer ".Length).Trim());
                 if (user == null)
                 {

@@ -25,14 +25,14 @@ namespace TicketSystem.Server.Controllers
         private Validator _validator = new Validator();
 
         [HttpPost("signup")]
-        public async Task<IActionResult> Signup([FromBody] UserSignIn user)
+        public async Task<IActionResult> Signup([FromBody] UserSignUp user)
         {
             if (user == null || string.IsNullOrEmpty(user.password) || string.IsNullOrEmpty(user.username) || string.IsNullOrEmpty(user.email))
             {
                 return BadRequest(new { message = "Invalid user data." });
             }
             var session = await _supabaseClient.Auth.SignUp(user.email, user.password);
-            if (session == null) 
+            if (session == null)
             {
                 return BadRequest(new { message = "Database fail" });
             }
@@ -49,8 +49,6 @@ namespace TicketSystem.Server.Controllers
             return Ok(new { message = "User created successfully", userId = user.username });
         }
 
-
-
         [Table("users")]
         public class User : BaseModel
         {
@@ -64,10 +62,8 @@ namespace TicketSystem.Server.Controllers
             public string username { get; set; }
         }
 
-
-        public class UserSignIn
+        public class UserSignUp
         {
-
             public int role { get; set; }
             public string username { get; set; }
             public string password { get; set; }
