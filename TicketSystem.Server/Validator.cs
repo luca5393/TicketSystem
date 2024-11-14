@@ -21,6 +21,14 @@ public class Validator
     }
 }
 
+public class UserViewModel
+{
+    public string Id { get; set; }
+    public int Role_id { get; set; }
+    public string Username { get; set; }
+
+}
+
 [Table("users")]
 public class User : BaseModel
 {

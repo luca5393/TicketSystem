@@ -69,7 +69,25 @@ namespace TicketSystem.Server.Controllers
             }).ToList();
 
             return Ok(new { message = "Success", qna = qna });
-         }
+        }
+
+        [HttpPost("productNameList")]
+        public async Task<IActionResult> ProductNameList(List<int> id)
+        {
+            List<ProductViewModel> product = new List<ProductViewModel>();
+
+            foreach (int i in id)
+            {
+                var result = await _supabaseClient.From<Product>().Where(x => x.Id == i).Get();
+                product.AddRange(result.Models.Select(product => new ProductViewModel
+                {
+                    Id = product.Id,
+                    Name = product.Name
+                }).ToList());
+            }
+
+            return Ok(new { message = "Success", qna = product });
+        }
 
     }
     public class SLAViewModel

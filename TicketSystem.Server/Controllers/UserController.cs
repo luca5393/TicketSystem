@@ -55,6 +55,24 @@ namespace TicketSystem.Server.Controllers
                 return Unauthorized(new { message = "There was an error trying to validate the token or getting the user", error = ex.Message });
             }
         }
+
+        [HttpPost("roleNameList")]
+        public async Task<IActionResult> RoleNameList(List<int> id)
+        {
+            List<RoleViewModel> role = new List<RoleViewModel>();
+
+            foreach (int i in id)
+            {
+                var result = await _supabaseClient.From<Role>().Where(x => x.Id == i).Get();
+                role.AddRange(result.Models.Select(role => new RoleViewModel
+                {
+                    Id = role.Id,
+                    Name = role.Name
+                }).ToList());
+            }
+
+            return Ok(new { message = "Success", role = role });
+        }
     }
 
     public class UserDataViewModel
@@ -71,5 +89,25 @@ namespace TicketSystem.Server.Controllers
 
         [Column("username")]
         public string Username { get; set; }
+    }
+
+    public class RoleViewModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
+    }
+
+    [Table("roles")]
+    public class Role : BaseModel
+    {
+        [PrimaryKey("id", true)]
+        public int Id { get; set; }
+
+        [Column("name")]
+        public string Name { get; set; }
+
+        [Column("desc")]
+        public string Desc { get; set; }
     }
 }
