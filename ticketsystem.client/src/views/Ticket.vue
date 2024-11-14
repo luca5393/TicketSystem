@@ -26,26 +26,24 @@
 
           <select id="supporter" class="select-box" v-model="ticket.supporter" required>
             <option value="" disabled>Select Supporter</option>
-            <option value="1">First supporter</option>
-            <option value="2">Second supporter</option>
-            <option value="3">Third supporter</option>
+            <option v-for="option in roleList" :key="option.id" :value="option.value">
+              {{ option.label }}
+            </option>
           </select>
         </div>
 
         <select id="product" class="select-products" v-model="ticket.product_id" required>
           <option value="" disabled>Select the product</option>
-          <option value="Product A">Product A</option>
-          <option value="Product B">Product B</option>
-          <option value="Product C">Product C</option>
-          <option value="Product D">Product D</option>
+          <option v-for="option in productList" :key="option.id" :value="option.value">
+            {{ option.label }}
+          </option>
         </select>
 
         <select id="helped" class="select-products" v-model="ticket.helped" required>
           <option value="" disabled>Select the helped person</option>
-          <option value="Lisa">Lisa</option>
-          <option value="Marvin">Marvin</option>
-          <option value="Claus">Claus</option>
-          <option value="Hans">Hans</option>
+          <option v-for="option in personList" :key="option.id" :value="option.value">
+            {{ option.label }}
+          </option>
         </select>
 
         <div v-if="mode === 'edit'">
@@ -111,6 +109,21 @@ import supabase from '@/supabase';
           role_id: '',
         },
         ticketDetail: {},
+        personList: [ 
+        { id: 1, label: 'Option 1', value: 'option1' },
+        { id: 2, label: 'Option 2', value: 'option2' },
+        { id: 3, label: 'Option 3', value: 'option3' },
+        ],
+        productList: [
+          { id: 1, label: 'Option 1', value: 'option1' },
+          { id: 2, label: 'Option 2', value: 'option2' },
+          { id: 3, label: 'Option 3', value: 'option3' },
+        ],
+        roleList: [
+        { id: 1, label: 'Option 1', value: 'option1' },
+        { id: 2, label: 'Option 2', value: 'option2' },
+        { id: 3, label: 'Option 3', value: 'option3' },
+      ],
       };
     },
   setup() {
@@ -227,6 +240,78 @@ import supabase from '@/supabase';
           console.error("Error deleting ticket:", error);
         }
       },
+      async featchpersonList() {
+      const token = await supabase.auth.getSession();
+      try {
+        const response = await fetch('https://localhost:7253/Ticket/ticket?id='+this.id, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token.data.session.access_token}`
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        if (responseData && responseData.tickets) {
+          this.personList = responseData.tickets;
+        } else {
+          console.error("No ticket found in response");
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    },
+    async featchproductList() {
+      const token = await supabase.auth.getSession();
+      try {
+        const response = await fetch('https://localhost:7253/Ticket/ticket?id='+this.id, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token.data.session.access_token}`
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        if (responseData && responseData.tickets) {
+          this.productList = responseData.tickets;
+        } else {
+          console.error("No ticket found in response");
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    },
+    async featchroleList() {
+      const token = await supabase.auth.getSession();
+      try {
+        const response = await fetch('https://localhost:7253/Ticket/ticket?id='+this.id, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token.data.session.access_token}`
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        if (responseData && responseData.tickets) {
+          this.roleList = responseData.tickets;
+        } else {
+          console.error("No ticket found in response");
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    },
     },
     watch: {
       mode(newMode) {
