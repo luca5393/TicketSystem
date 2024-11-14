@@ -320,6 +320,7 @@ namespace TicketSystem.Server.Controllers
                         Product_id = ticket.Product_id,
                         Priority = ticket.Priority,
                         Title = ticket.Title,
+                        Status = ticket.Status,
                         Desc = ticket.Desc,
                         Answer = ticket.Answer
                     }).ToList();
