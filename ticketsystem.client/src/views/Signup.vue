@@ -19,6 +19,12 @@
         <input v-model="repeatPassword" type="password" placeholder="Repeat password" required />
         <i class='bx bxs-lock-alt'></i>
       </div>
+
+      <div class="register-link">
+        <p>Aready have an account? <a href="login">Login</a></p>
+        <a href="/">Go to homepage</a>
+      </div>
+
       <button type="submit" class="btn">Signup</button>
     </form>
   </div>

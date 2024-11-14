@@ -124,19 +124,6 @@
     margin: -15px 0 15px;
   }
 
-  .remember-forgot label input {
-    margin-right: 3px;
-  }
-
-  .remember-forgot a {
-    color: var(--color-link);
-    text-decoration: none;
-  }
-
-    .remember-forgot a:hover {
-      text-decoration: underline;
-    }
-
   .wrapper .btn {
     width: 100%;
     height: 45px;

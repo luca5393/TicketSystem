@@ -75,7 +75,7 @@ export default {
   text-align: center;
   padding: 10px;
   font-weight: bold;
-  color: #666;
+  color: var(--color-button-text);
   transition: color 0.3s ease;
 }
 
