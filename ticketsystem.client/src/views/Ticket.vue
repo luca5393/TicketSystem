@@ -24,31 +24,31 @@
             <option value="1">1</option>
           </select>
 
-          <select id="supporter" class="select-box" v-model="ticket.supporter" required>
-            <option value="" disabled>Select Supporter</option>
-            <option v-for="option in roleList" :key="option.id" :value="option.value">
-              {{ option.label }}
+          <select id="supporter" class="select-box" v-model="ticket.role_id" required>
+            <option value="" disabled>Select Supporter Level</option>
+            <option v-for="option in roleList" :key="option.id" :value="option.id">
+              {{ option.name }}
             </option>
           </select>
         </div>
 
         <select id="product" class="select-products" v-model="ticket.product_id" required>
           <option value="" disabled>Select the product</option>
-          <option v-for="option in productList" :key="option.id" :value="option.value">
-            {{ option.label }}
+          <option v-for="product in productList" :key="product.id" :value="product.id">
+            {{ product.name }}
           </option>
         </select>
 
-        <select id="helped" class="select-products" v-model="ticket.helped" required>
+        <select id="helped" class="select-products" v-model="ticket.creator_id" required>
           <option value="" disabled>Select the helped person</option>
-          <option v-for="option in personList" :key="option.id" :value="option.value">
-            {{ option.label }}
+          <option v-for="option in personList" :key="option.id" :value="option.id">
+            {{ option.username }}
           </option>
         </select>
 
         <div v-if="mode === 'edit'">
           <label for="ticket-answer">Answer:</label>
-          <textarea class="description-input" id="ticket-answer" v-model="ticket.desc" required
+          <textarea class="description-input" id="ticket-answer" v-model="ticket.answer"
            placeholder="here is the answer"></textarea>
         </div>
 
@@ -101,29 +101,19 @@ import supabase from '@/supabase';
     data() {
       return {
         ticket: {
-          title: '',
-          desc: '',
-          priority: '',
-          product_id: '',
-          helped: '',
-          role_id: '',
+          creator_id: "",
+          role_id: 1,
+          product_id: 0,
+          priority: 0,
+          title: "",
+          desc: "",
+          answer: "",
+          status: "",
         },
         ticketDetail: {},
-        personList: [ 
-        { id: 1, label: 'Option 1', value: 'option1' },
-        { id: 2, label: 'Option 2', value: 'option2' },
-        { id: 3, label: 'Option 3', value: 'option3' },
-        ],
-        productList: [
-          { id: 1, label: 'Option 1', value: 'option1' },
-          { id: 2, label: 'Option 2', value: 'option2' },
-          { id: 3, label: 'Option 3', value: 'option3' },
-        ],
-        roleList: [
-        { id: 1, label: 'Option 1', value: 'option1' },
-        { id: 2, label: 'Option 2', value: 'option2' },
-        { id: 3, label: 'Option 3', value: 'option3' },
-      ],
+        personList: [],
+        productList: [],
+        roleList: [],
       };
     },
   setup() {
@@ -140,6 +130,7 @@ import supabase from '@/supabase';
         var url = 'https://localhost:7253/Ticket/changeTicket'
       }
       try {
+        console.log(this.role_id);
         const response = await fetch(url, {
           method: 'POST',
           headers: {
@@ -147,15 +138,16 @@ import supabase from '@/supabase';
             "Authorization": `Bearer ${token.data.session.access_token}`
           },
           body: JSON.stringify({
-            creator_id: this.ticket.helped,
+            creator_id: this.ticket.creator_id,
             role_id: this.ticket.role_id,
             product_id: this.ticket.product_id,
             priority: this.ticket.priority,
             title: this.ticket.title,
-            desc: this.ticket.description,
+            desc: this.ticket.desc,
+            answer: this.ticket.answer,
+            status: this.ticket.status,
           })
         });
-        console.log(response);
         if (!response.ok) {
           alert('An error occurred while saving user data.');
           return;
@@ -185,8 +177,8 @@ import supabase from '@/supabase';
         const responseData = await response.json();
         if (responseData && responseData.tickets) {
           this.ticketDetail = responseData.tickets[0];
-          console.log(this.ticketDetail);
           if (this.mode === 'edit') {
+            console.log(this.ticketDetail);
             this.ticket = { ...this.ticketDetail };
           }
         } else {
@@ -214,7 +206,6 @@ import supabase from '@/supabase';
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const qnaData = await response.json();
-        console.log(qnaData.qna);
         this.qnaList = qnaData.qna;
       } catch (error) {
         console.error('Error fetching QNA:', error);
@@ -243,7 +234,7 @@ import supabase from '@/supabase';
       async featchpersonList() {
       const token = await supabase.auth.getSession();
       try {
-        const response = await fetch('https://localhost:7253/Ticket/ticket?id='+this.id, {
+        const response = await fetch('https://localhost:7253/User/userList', {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",
@@ -255,8 +246,8 @@ import supabase from '@/supabase';
         }
 
         const responseData = await response.json();
-        if (responseData && responseData.tickets) {
-          this.personList = responseData.tickets;
+        if (responseData && responseData.users) {
+          this.personList = responseData.users;
         } else {
           console.error("No ticket found in response");
         }
@@ -265,22 +256,18 @@ import supabase from '@/supabase';
       }
     },
     async featchproductList() {
-      const token = await supabase.auth.getSession();
       try {
-        const response = await fetch('https://localhost:7253/Ticket/ticket?id='+this.id, {
+        const response = await fetch("https://localhost:7253/Product/productList", {
           method: 'GET',
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token.data.session.access_token}`
-          },
+          headers: {"Content-Type": "application/json",},
         });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const responseData = await response.json();
-        if (responseData && responseData.tickets) {
-          this.productList = responseData.tickets;
+        if (responseData && responseData.products) {
+          this.productList = responseData.products;
         } else {
           console.error("No ticket found in response");
         }
@@ -289,22 +276,20 @@ import supabase from '@/supabase';
       }
     },
     async featchroleList() {
-      const token = await supabase.auth.getSession();
       try {
-        const response = await fetch('https://localhost:7253/Ticket/ticket?id='+this.id, {
-          method: 'GET',
+        const response = await fetch('https://localhost:7253/User/roleNameList', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token.data.session.access_token}`
-          },
+            "Content-Type": "application/json",},
+            body: JSON.stringify( [1, 2, 3]  ),
         });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const responseData = await response.json();
-        if (responseData && responseData.tickets) {
-          this.roleList = responseData.tickets;
+        if (responseData && responseData.role) {
+          this.roleList = responseData.role;
         } else {
           console.error("No ticket found in response");
         }
@@ -325,6 +310,9 @@ import supabase from '@/supabase';
           if (this.id && (this.mode === 'view' || this.mode === 'edit')) {
             this.fetchTicketDetails();
           }
+          this.featchpersonList();
+          this.featchroleList();
+          this.featchproductList();
         }
       },
     },
