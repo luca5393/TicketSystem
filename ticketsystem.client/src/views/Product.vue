@@ -24,15 +24,15 @@
           <label class="uptime-label">Product Uptime:</label>
           <span class="uptime-value">{{ uptime }}</span>
         </div>
-
-        <div class="sla-metrics">
-          <label class="sla-label">Current SLA Metrics:</label>
-          <ul class="sla-list">
-            <li v-for="(metric, index) in slaMetrics" :key="index">
-              <strong>{{ metric.name }}:</strong> {{ metric.value }}
-            </li>
-          </ul>
+        <div class="uptime-info">
+          <label class="uptime-label">Product Resolution Time:</label>
+          <span class="uptime-value">{{ resolutionTime }}</span>
         </div>
+        <div class="uptime-info">
+          <label class="uptime-label">Product Response Time:</label>
+          <span class="uptime-value">{{ responseTime }}</span>
+        </div>
+
 
         <div class="sla-targets"></div>
       </div>
@@ -61,10 +61,14 @@ export default {
   data() {
     return {
       uptime: "",
-      slaMetrics: [],
-      slaTarget: "",
+      resolutionTime: "",
+      responseTime: "",
       qnaList: [],
     };
+  },
+  mounted() {
+  this.fetchSLA();
+  this.fetchQnA()
   },
   computed: {
     productId() {
@@ -109,7 +113,7 @@ export default {
 
           const qnaData = await response.json();
           console.log(qnaData.qna);
-          this.qnaList = qnaData.qna
+          this.qnaList = qnaData.qna;
 
         } catch (error) {
           console.error('Error fetching SLA:', error);
