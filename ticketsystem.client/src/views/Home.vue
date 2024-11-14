@@ -35,14 +35,11 @@ export default {
 <style scoped>
 
 .wrapper {
-  width: 70vh;
-  height: 100vh;
+  width: 80vh;
+  height: 80vh;
   padding: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   position: absolute;
   top: 50%;

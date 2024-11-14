@@ -10,11 +10,7 @@
         </option>
       </select>
 
-      <select v-model="sortOption">
-        <option value="newest">Newest</option>
-        <option value="oldest">Oldest</option>
-        <option value="priority">Priority</option>
-      </select>
+
     </div>
 
     <ul>
@@ -92,7 +88,7 @@ export default {
           console.log(roleResponseData);
           this.items = this.items.concat(roleResponseData.tickets)
           this.items = this.items.filter(
-            (item, index, self) => 
+            (item, index, self) =>
               index === self.findIndex((obj) => obj.id === item.id)
           );
         } else {
@@ -146,7 +142,6 @@ div {
   max-height: 65vh;
   overflow-y: auto;
   margin: 0 auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 p {
