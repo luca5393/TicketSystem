@@ -204,7 +204,7 @@ import supabase from '@/supabase';
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token.data.session.access_token}`
           },
-          body: JSON.stringify({ id: this.ticket.id, Desc: "", Name: "" }),
+          body: JSON.stringify({ id: this.ticketDetail.id}),
         });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -217,6 +217,7 @@ import supabase from '@/supabase';
       },
       async deleteTicket() {
         const token = await supabase.auth.getSession();
+        console.log(this.ticket.id);
         try {
           const response = await fetch(`https://localhost:7253/Ticket/removeTicket`, {
             method: 'POST',
@@ -224,7 +225,7 @@ import supabase from '@/supabase';
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token.data.session.access_token}`
           },
-          body: JSON.stringify({ id: this.ticket.id, Desc: "", Name: "" }),
+          body: JSON.stringify({ id: this.ticketDetail.id}),
         });
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -301,25 +302,6 @@ import supabase from '@/supabase';
         console.error("Error fetching products:", error);
       }
     },
-    },
-    watch: {
-      mode(newMode) {
-        if (newMode === 'edit' && this.ticketDetail) {
-          this.ticket = { ...this.ticketDetail };
-        }
-      },
-      id: {
-        immediate: true,
-        handler() {
-          if (this.id && (this.mode === 'view' || this.mode === 'edit')) {
-            this.fetchTicketDetails();
-          }
-          this.featchpersonList();
-          this.featchroleList();
-          this.featchproductList();
-        }
-      },
-    },
     async closeTicket() {
       const token = await supabase.auth.getSession();
       try {
@@ -350,6 +332,25 @@ import supabase from '@/supabase';
         console.error('An error occurred during save:', error);
         alert('An error occurred. Please try again.');
       }
+    },
+    },
+    watch: {
+      mode(newMode) {
+        if (newMode === 'edit' && this.ticketDetail) {
+          this.ticket = { ...this.ticketDetail };
+        }
+      },
+      id: {
+        immediate: true,
+        handler() {
+          if (this.id && (this.mode === 'view' || this.mode === 'edit')) {
+            this.fetchTicketDetails();
+          }
+          this.featchpersonList();
+          this.featchroleList();
+          this.featchproductList();
+        }
+      },
     },
   };
 </script>
@@ -436,10 +437,6 @@ import supabase from '@/supabase';
     display: flex;
     gap: 10px; /* Adds spacing between buttons */
     margin-top: 10px;
-  }
-
-  .close.ticket {
-
   }
 
   .edit-button,

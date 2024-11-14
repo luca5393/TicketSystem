@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:5173",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\TicketSystem.Server\\..\\ticketsystem.client",
+"WorkingDirectory": "C:\\Users\\lucas\\OneDrive\\Dokumenter\\GitHub\\TicketSystem\\TicketSystem.Server\\..\\ticketsystem.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

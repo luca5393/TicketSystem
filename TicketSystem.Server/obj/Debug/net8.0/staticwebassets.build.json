@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "2DDjHGMHkpaSHfal7BEd77X5IeKo+iTeDTHfW/uDNrc=",
+  "Hash": "Ke060VgjOxR9z1U1IRzMtyund9hmob+ubQbMFE1x1Pg=",
   "Source": "TicketSystem.Server",
   "BasePath": "_content/TicketSystem.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\marcu\\Documents\\GitHub\\TicketSystem\\ticketsystem.client\\ticketsystem.client.esproj",
+      "Identity": "C:\\Users\\lucas\\OneDrive\\Dokumenter\\GitHub\\TicketSystem\\ticketsystem.client\\ticketsystem.client.esproj",
       "Version": 2,
       "Source": "ticketsystem.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
