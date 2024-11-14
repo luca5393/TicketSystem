@@ -11,7 +11,7 @@
         <input class="title-input" type="text" id="ticket-title" v-model="ticket.title" required placeholder="Title" />
 
         <label for="ticket-description">Description:</label>
-        <textarea class="description-input" id="ticket-description" v-model="ticket.description" required
+        <textarea class="description-input" id="ticket-description" v-model="ticket.desc" required
           placeholder="Describe your problem here"></textarea>
 
         <div class="select-container">
@@ -32,7 +32,7 @@
           </select>
         </div>
 
-        <select id="product" class="select-products" v-model="ticket.product" required>
+        <select id="product" class="select-products" v-model="ticket.product_id" required>
           <option value="" disabled>Select the product</option>
           <option value="Product A">Product A</option>
           <option value="Product B">Product B</option>
@@ -88,7 +88,23 @@ import supabase from '@/supabase';
         type: String,
         default: null,
       },
-      ticketDetail: null,
+      ticketDetail: {
+        type: Object,
+        default: () => ({})
+      }
+    },
+    data() {
+      return {
+        ticket: {
+          title: '',
+          desc: '',
+          priority: '',
+          product_id: '',
+          helped: '',
+          role_id: '',
+        },
+        ticketDetail: {},
+      };
     },
   setup() {
     const router = useRouter();
@@ -147,19 +163,17 @@ import supabase from '@/supabase';
         }
 
         const responseData = await response.json();
-        console.log(responseData);
         if (responseData && responseData.tickets) {
           this.ticketDetail = responseData.tickets[0];
+          console.log(this.ticketDetail);
+          if (this.mode === 'edit') {
+            this.ticket = { ...this.ticketDetail };
+          }
         } else {
           console.error("No ticket found in response");
         }
       } catch (error) {
         console.error("Error fetching products:", error);
-      }
-
-      // Populate form fields if in "edit" mode
-      if (this.mode === "edit") {
-        this.ticket = { ...this.ticketDetail };
       }
     },
     navigateToEdit() {
