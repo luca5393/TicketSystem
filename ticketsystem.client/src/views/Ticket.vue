@@ -48,6 +48,12 @@
           <option value="Hans">Hans</option>
         </select>
 
+        <div v-if="mode === 'edit'">
+          <label for="ticket-answer">Answer:</label>
+          <textarea class="description-input" id="ticket-answer" v-model="ticket.desc" required
+           placeholder="here is the answer"></textarea>
+        </div>
+
         <button class="create-ticket" type="submit">
           {{ mode === 'create' ? 'Create Ticket' : 'Update Ticket' }}
         </button>
@@ -62,6 +68,7 @@
       <p><strong class="title">Priority:</strong> {{ ticketDetail.priority }}</p>
       <p><strong class="title">Product:</strong> {{ ticketDetail.product_id }}</p>
       <p><strong class="title">Helped Person:</strong> {{ ticketDetail.creator_id }}</p>
+      <p><strong class="title">Answer:</strong> {{ ticketDetail.answer }}</p>
 
       <!-- Button Container for Edit and Delete Buttons -->
       <div class="button-container">
