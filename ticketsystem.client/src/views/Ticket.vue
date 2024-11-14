@@ -52,7 +52,7 @@
            placeholder="here is the answer"></textarea>
         </div>
 
-        <button class="close-ticket">Close the ticket</button>
+        <button @click="closeTicket" class="close-ticket">Close the ticket</button>
 
         <button class="create-ticket" type="submit">
           {{ mode === 'create' ? 'Create Ticket' : 'Update Ticket' }}
@@ -103,6 +103,7 @@ import supabase from '@/supabase';
     data() {
       return {
         ticket: {
+          id: 0,
           creator_id: "",
           role_id: 1,
           product_id: 0,
@@ -140,6 +141,7 @@ import supabase from '@/supabase';
             "Authorization": `Bearer ${token.data.session.access_token}`
           },
           body: JSON.stringify({
+            id: this.ticket.id,
             creator_id: this.ticket.creator_id,
             role_id: this.ticket.role_id,
             product_id: this.ticket.product_id,
@@ -196,13 +198,13 @@ import supabase from '@/supabase';
     async createQna() {
       const token = await supabase.auth.getSession();
       try {
-        const response = await fetch(`https://localhost:7253/Product/productQNAList`, {
+        const response = await fetch(`https://localhost:7253/Ticket/ticketToQNA`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token.data.session.access_token}`
           },
-          body: JSON.stringify({ id: this.ticket.product_id, Desc: "", Name: "" }),
+          body: JSON.stringify({ id: this.ticket.id, Desc: "", Name: "" }),
         });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -317,6 +319,37 @@ import supabase from '@/supabase';
           this.featchproductList();
         }
       },
+    },
+    async closeTicket() {
+      const token = await supabase.auth.getSession();
+      try {
+        console.log(this.role_id);
+        const response = await fetch('https://localhost:7253/Ticket/changeTicket', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token.data.session.access_token}`
+          },
+          body: JSON.stringify({
+            id: this.ticket.id,
+            creator_id: this.ticket.creator_id,
+            role_id: this.ticket.role_id,
+            product_id: this.ticket.product_id,
+            priority: this.ticket.priority,
+            title: this.ticket.title,
+            status: "closed",
+            desc: this.ticket.desc,
+            answer: this.ticket.answer,
+          })
+        });
+        if (!response.ok) {
+          alert('An error occurred while closing the ticket.');
+          return;
+        }
+      } catch (error) {
+        console.error('An error occurred during save:', error);
+        alert('An error occurred. Please try again.');
+      }
     },
   };
 </script>

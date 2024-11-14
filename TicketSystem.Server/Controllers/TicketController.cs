@@ -49,6 +49,7 @@ namespace TicketSystem.Server.Controllers
                         Product_id = ticket.Product_id,
                         Priority = ticket.Priority,
                         Title = ticket.Title,
+                        Status = "open",
                         Desc = ticket.Desc,
                     };
 
@@ -127,6 +128,7 @@ namespace TicketSystem.Server.Controllers
                       .Set(x => x.Product_id, ticket.Product_id)
                       .Set(x => x.Priority, ticket.Priority)
                       .Set(x => x.Title, ticket.Title)
+                      .Set(x => x.Status, ticket.Status)
                       .Set(x => x.Desc, ticket.Desc)
                       .Set(x => x.Answer, ticket.Answer)
                       .Update();
@@ -166,9 +168,9 @@ namespace TicketSystem.Server.Controllers
                         Product_id = ticket.Product_id,
                         Priority = ticket.Priority,
                         Title = ticket.Title,
+                        Status = ticket.Status,
                         Desc = ticket.Desc,
-                        Answer = ticket.Answer,
-                        Status = ticket.Status
+                        Answer = ticket.Answer
                     }).ToList();
 
                     if (ticketList.First().Status == "open")
@@ -183,10 +185,10 @@ namespace TicketSystem.Server.Controllers
                     
                     var model = new QNA
                     {
-                        Product_id = ticketList.First().Product_id,
-                        Title = ticketList.First().Title,
-                        Question = ticketList.First().Desc,
-                        Answer = ticketList.First().Answer
+                        Product_id = ticketList.FirstOrDefault().Product_id,
+                        Title = ticketList.FirstOrDefault().Title,
+                        Question = ticketList.FirstOrDefault().Desc,
+                        Answer = ticketList.FirstOrDefault().Answer
                     };
 
                     await _supabaseClient.From<QNA>().Insert(model);
@@ -234,6 +236,7 @@ namespace TicketSystem.Server.Controllers
                             Product_id = ticket.Product_id,
                             Priority = ticket.Priority,
                             Title = ticket.Title,
+                            Status = ticket.Status,
                             Desc = ticket.Desc,
                             Answer = ticket.Answer
                         }).ToList();
@@ -276,6 +279,7 @@ namespace TicketSystem.Server.Controllers
                         Product_id = ticket.Product_id,
                         Priority = ticket.Priority,
                         Title = ticket.Title,
+                        Status = ticket.Status,
                         Desc = ticket.Desc,
                         Answer = ticket.Answer
                     }).ToList();
