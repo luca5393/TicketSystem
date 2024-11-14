@@ -52,6 +52,8 @@
            placeholder="here is the answer"></textarea>
         </div>
 
+        <button class="close-ticket">Close the ticket</button>
+
         <button class="create-ticket" type="submit">
           {{ mode === 'create' ? 'Create Ticket' : 'Update Ticket' }}
         </button>
@@ -145,7 +147,7 @@ import supabase from '@/supabase';
             title: this.ticket.title,
             desc: this.ticket.desc,
             answer: this.ticket.answer,
-            status: this.ticket.status,
+            status: "open",
           })
         });
         if (!response.ok) {
@@ -401,6 +403,10 @@ import supabase from '@/supabase';
     display: flex;
     gap: 10px; /* Adds spacing between buttons */
     margin-top: 10px;
+  }
+
+  .close.ticket {
+
   }
 
   .edit-button,
